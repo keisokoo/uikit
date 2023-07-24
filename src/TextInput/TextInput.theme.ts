@@ -1,5 +1,6 @@
+import { merge } from 'lodash-es'
+import { PartialDeep } from 'type-fest'
 import { defaultThemes } from '../themes'
-
 const { colors, fonts } = defaultThemes
 
 const TextInputTheme = {
@@ -30,5 +31,13 @@ const TextInputTheme = {
   textStyle: {
     default: fonts.default,
   },
-} as const
+}
+export type TextInputThemeType = typeof TextInputTheme
+
+export const getTextInputTheme = (
+  customTheme?: PartialDeep<TextInputThemeType>
+) => {
+  const theme = merge(TextInputTheme, customTheme)
+  return theme
+}
 export default TextInputTheme

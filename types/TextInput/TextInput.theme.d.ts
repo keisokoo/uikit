@@ -1,30 +1,89 @@
+import { PartialDeep } from 'type-fest';
 declare const TextInputTheme: {
-    readonly color: {
-        readonly iconFocusColor: string;
-        readonly box: {
-            readonly textColor: string;
-            readonly textDisabledColor: string;
-            readonly backgroundColor: string;
-            readonly backgroundFocusColor: string;
-            readonly borderColor: string;
-            readonly borderFocusColor: string;
-            readonly placeholderColor: string;
-            readonly borderDisabledColor: string;
-            readonly iconFocusColor: string;
+    color: {
+        iconFocusColor: string;
+        box: {
+            textColor: string;
+            textDisabledColor: string;
+            backgroundColor: string;
+            backgroundFocusColor: string;
+            borderColor: string;
+            borderFocusColor: string;
+            placeholderColor: string;
+            borderDisabledColor: string;
+            iconFocusColor: string;
         };
-        readonly underline: {
-            readonly textColor: string;
-            readonly textDisabledColor: string;
-            readonly backgroundFocusColor: string;
-            readonly borderColor: string;
-            readonly borderFocusColor: string;
-            readonly placeholderColor: string;
-            readonly borderDisabledColor: string;
-            readonly iconFocusColor: string;
+        underline: {
+            textColor: string;
+            textDisabledColor: string;
+            backgroundFocusColor: string;
+            borderColor: string;
+            borderFocusColor: string;
+            placeholderColor: string;
+            borderDisabledColor: string;
+            iconFocusColor: string;
         };
     };
-    readonly textStyle: {
-        readonly default: string;
+    textStyle: {
+        default: string;
     };
 };
+export type TextInputThemeType = typeof TextInputTheme;
+export declare const getTextInputTheme: (customTheme?: PartialDeep<TextInputThemeType>) => {
+    color: {
+        iconFocusColor: string;
+        box: {
+            textColor: string;
+            textDisabledColor: string;
+            backgroundColor: string;
+            backgroundFocusColor: string;
+            borderColor: string;
+            borderFocusColor: string;
+            placeholderColor: string;
+            borderDisabledColor: string;
+            iconFocusColor: string;
+        };
+        underline: {
+            textColor: string;
+            textDisabledColor: string;
+            backgroundFocusColor: string;
+            borderColor: string;
+            borderFocusColor: string;
+            placeholderColor: string;
+            borderDisabledColor: string;
+            iconFocusColor: string;
+        };
+    };
+    textStyle: {
+        default: string;
+    };
+} & import("type-fest/source/partial-deep").PartialObjectDeep<{
+    color: {
+        iconFocusColor: string;
+        box: {
+            textColor: string;
+            textDisabledColor: string;
+            backgroundColor: string;
+            backgroundFocusColor: string;
+            borderColor: string;
+            borderFocusColor: string;
+            placeholderColor: string;
+            borderDisabledColor: string;
+            iconFocusColor: string;
+        };
+        underline: {
+            textColor: string;
+            textDisabledColor: string;
+            backgroundFocusColor: string;
+            borderColor: string;
+            borderFocusColor: string;
+            placeholderColor: string;
+            borderDisabledColor: string;
+            iconFocusColor: string;
+        };
+    };
+    textStyle: {
+        default: string;
+    };
+}, {}>;
 export default TextInputTheme;

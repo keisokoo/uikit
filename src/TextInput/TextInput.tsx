@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import React, { MutableRefObject, useRef, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 import TextInputStyle from './TextInput.styled'
-import TextInputTheme from './TextInput.theme'
+import TextInputTheme, { getTextInputTheme } from './TextInput.theme'
 import { TextInputProps, TextInputStyleType } from './TextInput.type'
 import { DeleteInput } from './icons'
 
@@ -18,6 +18,7 @@ const DefaultTextInput = ({
   onFocus,
   onBlur,
   onChange,
+  customTheme,
   ...props
 }: TextInputProps & {
   inputStyle: TextInputStyleType
@@ -27,7 +28,9 @@ const DefaultTextInput = ({
   const [focus, set_focus] = useState<boolean>(false)
   const [valued, set_valued] = useState<boolean>(false)
   return (
-    <ThemeProvider theme={TextInputTheme}>
+    <ThemeProvider
+      theme={customTheme ? getTextInputTheme(customTheme) : TextInputTheme}
+    >
       <Wrap
         className={classNames({
           readOnly: props.readOnly,

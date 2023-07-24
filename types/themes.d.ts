@@ -1,5 +1,5 @@
 export declare const defaultThemes: {
-    colors: {
+    readonly colors: {
         foreground: string;
         background: string;
         white: string;
@@ -23,7 +23,7 @@ export declare const defaultThemes: {
         info: string;
         primary: string;
     };
-    fonts: {
+    readonly fonts: {
         default: string;
         small: string;
     };

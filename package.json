@@ -41,6 +41,7 @@
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-typescript": "^8.3.0",
     "@svgr/cli": "^8.0.1",
+    "@types/lodash-es": "^4.17.8",
     "@types/react": "^18.2.15",
     "@types/react-syntax-highlighter": "^15.5.7",
     "@typescript-eslint/parser": "^5.15.0",
@@ -82,9 +83,11 @@
   },
   "dependencies": {
     "classnames": "^2.3.2",
+    "lodash-es": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-syntax-highlighter": "^15.5.0",
-    "styled-components": "^6.0.5"
+    "styled-components": "^6.0.5",
+    "type-fest": "^4.0.0"
   }
 }
