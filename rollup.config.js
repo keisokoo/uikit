@@ -22,6 +22,7 @@ const banner = `${PACKAGE.name} - ${PACKAGE.version}
 const globals = {
   react: 'React',
   'styled-components': 'styled',
+  'react-syntax-highlighter': 'ReactSyntaxHighlighter',
 }
 
 const defaultConfig = {
@@ -56,7 +57,12 @@ const defaultConfig = {
       exports: 'auto',
     },
   ],
-  external: ['react', 'react-dom', 'styled-components'],
+  external: [
+    'react',
+    'react-dom',
+    'styled-components',
+    'react-syntax-highlighter',
+  ],
   plugins: [
     postcss({
       extract: false,
