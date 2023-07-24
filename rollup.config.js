@@ -1,4 +1,6 @@
-import buble from '@rollup/plugin-buble'
+import { DEFAULT_EXTENSIONS } from '@babel/core'
+import babel from '@rollup/plugin-babel'
+import json from '@rollup/plugin-json'
 import typescript from '@rollup/plugin-typescript'
 import commonjs from 'rollup-plugin-commonjs'
 import fileSize from 'rollup-plugin-filesize'
@@ -23,6 +25,15 @@ const globals = {
 }
 
 const defaultConfig = {
+  onwarn(warning, warn) {
+    if (
+      warning.code === 'MODULE_LEVEL_DIRECTIVE' &&
+      warning.message.includes(`'use client'`)
+    ) {
+      return
+    }
+    warn(warning)
+  },
   input: 'src/index.ts',
   output: [
     {
@@ -55,11 +66,11 @@ const defaultConfig = {
     typescript({
       target: 'es2016',
     }),
-    buble({
-      objectAssign: true,
-      transforms: {
-        templateString: false,
-      },
+    // buble(),
+    json(),
+    babel({
+      extensions: [...DEFAULT_EXTENSIONS, '.ts', 'tsx'],
+      exclude: /node_modules/,
     }),
     replace({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
