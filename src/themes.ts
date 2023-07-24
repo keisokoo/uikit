@@ -28,4 +28,4 @@ const fonts = {
   small:
     'font-size:14px;font-weight:400;letter-spacing:-0.6000000238418579px;line-height:20px;',
 }
-export { colors, fonts }
+export const defaultThemes = { colors, fonts }

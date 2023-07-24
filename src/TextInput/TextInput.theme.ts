@@ -1,4 +1,6 @@
-import { colors, fonts } from '../themes'
+import { defaultThemes } from '../themes'
+
+const { colors, fonts } = defaultThemes
 
 const TextInputTheme = {
   color: {
