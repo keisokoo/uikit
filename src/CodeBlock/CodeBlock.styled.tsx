@@ -5,7 +5,11 @@ export const CodeBlockStyle = {
     ${({ $css }) => css`
       background: rgb(39, 40, 34);
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
       pre {
+        flex: 1;
+        flex-shrink: 0;
         border: 1px solid #5a5a5a;
         border-radius: 0 0 12px 12px;
       }
