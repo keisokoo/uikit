@@ -9,9 +9,9 @@ git clone git@github.com:keisokoo/uikit.git
 ```
 
 ```
-npm install --save-dev ./uikit styled-components
+npm install ./uikit styled-components
 ```
 
 ```
-yarn add -D ./uikit styled-components
+yarn add ./uikit styled-components
 ```
