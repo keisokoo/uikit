@@ -6,6 +6,10 @@
   "main": "dist/kui.cjs.js",
   "module": "dist/kui.es.js",
   "types": "types/index.d.ts",
+  "files": [
+    "dist",
+    "types"
+  ],
   "scripts": {
     "svg": "svgr --typescript -d . .",
     "start": "webpack-dev-server --hot",
