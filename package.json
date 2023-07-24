@@ -14,7 +14,7 @@
     "svg": "svgr --typescript -d . .",
     "start": "webpack-dev-server --hot",
     "format": "prettier --write ./src",
-    "build": "rimraf dist && -env yarn build-dist && yarn build-types && yarn format",
+    "build": "rimraf dist && cross-env yarn build-dist && yarn build-types && yarn format",
     "build-dist": "cross-env NODE_ENV=production rollup -c rollup.config.js",
     "build-types": "tsc -p tsconfig.build.json"
   },
