@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import React, { useId, useState } from 'react'
+import React, { MutableRefObject, useRef, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 import TextInputStyle from './TextInput.styled'
 import TextInputTheme from './TextInput.theme'
@@ -23,13 +23,12 @@ const DefaultTextInput = ({
   inputStyle: TextInputStyleType
   $radius?: number | string
 }) => {
-  const id = useId()
+  const inputRef = useRef() as MutableRefObject<HTMLInputElement>
   const [focus, set_focus] = useState<boolean>(false)
   const [valued, set_valued] = useState<boolean>(false)
   return (
     <ThemeProvider theme={TextInputTheme}>
       <Wrap
-        id={id}
         className={classNames({
           readOnly: props.readOnly,
           disabled: props.disabled,
@@ -43,6 +42,7 @@ const DefaultTextInput = ({
       >
         {prepend}
         <Input
+          ref={inputRef}
           onFocus={(e) => {
             set_focus(true)
             onFocus && onFocus(e)
@@ -63,7 +63,7 @@ const DefaultTextInput = ({
           className="delete-icon"
           onClick={() => {
             if (!valued) return
-            const inputEl = document.getElementById(id)?.querySelector('input')
+            const inputEl = inputRef.current
             if (inputEl) {
               const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
                 window.HTMLInputElement.prototype,

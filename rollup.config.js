@@ -22,7 +22,7 @@ const banner = `${PACKAGE.name} - ${PACKAGE.version}
 const globals = {
   react: 'React',
   'styled-components': 'styled',
-  'react-syntax-highlighter': 'ReactSyntaxHighlighter',
+  'react-syntax-highlighter': 'reactSyntaxHighlighter',
 }
 
 const defaultConfig = {
