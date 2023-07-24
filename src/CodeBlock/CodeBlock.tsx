@@ -3,10 +3,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { okaidia } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { CodeBlockStyle } from './CodeBlock.styled'
+import { CodeBlockProps } from './CodeBlock.type'
 import { copyToClipboard } from './helpers/clipboard'
 import { Copy, CopyCheck, Ts } from './icons'
-import { CodeBlockStyle } from './styled/CodeBlock.styled'
-import { CodeBlockProps } from './types/CodeBlock.type'
 
 const { Wrap, Title, FileName, Clipboard } = CodeBlockStyle
 export const CodeBlock = ({
