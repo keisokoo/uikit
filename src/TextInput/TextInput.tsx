@@ -62,27 +62,29 @@ const DefaultTextInput = ({
           {...props}
         />
         {append}
-        <button
-          className="delete-icon"
-          onClick={() => {
-            if (!valued) return
-            const inputEl = inputRef.current
-            if (inputEl) {
-              const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
-                window.HTMLInputElement.prototype,
-                'value'
-              )?.set
+        {valued && (
+          <button
+            className="delete-icon"
+            onClick={() => {
+              if (!valued) return
+              const inputEl = inputRef.current
+              if (inputEl) {
+                const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+                  window.HTMLInputElement.prototype,
+                  'value'
+                )?.set
 
-              if (nativeInputValueSetter === undefined) return
-              nativeInputValueSetter?.call(inputEl, '')
-              const nextEvent = new Event('change', { bubbles: true })
-              inputEl.dispatchEvent(nextEvent)
-              inputEl.focus()
-            }
-          }}
-        >
-          {valued && <DeleteInput />}
-        </button>
+                if (nativeInputValueSetter === undefined) return
+                nativeInputValueSetter?.call(inputEl, '')
+                const nextEvent = new Event('change', { bubbles: true })
+                inputEl.dispatchEvent(nextEvent)
+                inputEl.focus()
+              }
+            }}
+          >
+            {valued && <DeleteInput />}
+          </button>
+        )}
       </Wrap>
     </ThemeProvider>
   )
