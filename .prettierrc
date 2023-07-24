@@ -6,7 +6,6 @@
   "bracketSameLine": false,
   "bracketSpacing": true,
   "cursorOffset": -1,
-  "editorconfig": false,
   "embeddedLanguageFormatting": "auto",
   "endOfLine": "lf",
   "htmlWhitespaceSensitivity": "css",
