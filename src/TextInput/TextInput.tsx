@@ -1,4 +1,3 @@
-'use client'
 import classNames from 'classnames'
 import React, { useId, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
