@@ -1,3 +1,5 @@
+/// <reference types="react" />
+/// <reference types="react" />
 import { CSSProp } from 'styled-components';
 export declare const CodeBlockStyle: {
     Wrap: import("styled-components").IStyledComponent<"web", import("styled-components/dist/types").Substitute<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLDivElement>, HTMLDivElement>, {
