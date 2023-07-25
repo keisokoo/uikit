@@ -1,0 +1,62 @@
+// configs/themes.ts파일을 수정하면 적용됩니다.
+$colors: (
+  "foreground": #e2dbdb,
+  "background": #1c1c1c,
+  "white": #ffffff,
+  "white70": #ffffffb2,
+  "white50": #ffffff7f,
+  "white30": #ffffff4c,
+  "white10": #ffffff19,
+  "gray0": #d4cfca,
+  "gray1": #cdcdcd,
+  "gray2": #acacac,
+  "gray3": #8f8f8f,
+  "gray4": #6b6b6b,
+  "gray5": #4a4a4a,
+  "gray6": #313131,
+  "gray7": #222020,
+  "fog": #414141,
+  "black": #000000,
+  "alert": #d8310d,
+  "warning": #efac00,
+  "success": #1ed300,
+  "info": #0094d3,
+  "primary": #24b3f6,
+);
+$fonts: (
+  "default": (
+    font-size: 16px,
+    font-weight: 400,
+    letter-spacing: -0.6000000238418579px,
+    line-height: 24px,
+  ),
+  "small": (
+    font-size: 14px,
+    font-weight: 400,
+    letter-spacing: -0.6000000238418579px,
+    line-height: 20px,
+  ),
+);
+@function get-from-colors($key-name) {
+  @return map-get($colors, $key-name);
+}
+
+@mixin get-from-fonts($name) {
+  @each $mixin-name, $mixin-properties in $fonts {
+    @if $name == $mixin-name {
+      @each $property, $value in $mixin-properties {
+        #{$property}: $value;
+      }
+    }
+  }
+}
+///
+/// @param {type} $color-name - key of $colors
+/// @output - color: $color;
+@mixin apply-color($color-name) {
+  @each $key, $color in $colors {
+    @if $key == $color-name {
+      color: $color;
+    }
+  }
+}

@@ -1,32 +1,27 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-
-const cssRegex = /\.css$/
-const cssModuleRegex = /\.module\.css$/
-const sassRegex = /\.(scss|sass)$/
-const sassModuleRegex = /\.module\.(scss|sass)$/
-
+const postcssNormalize = require('postcss-normalize')
 const postcssConfig = {
-  loader: require.resolve('postcss-loader'),
+  loader: 'postcss-loader',
   options: {
     postcssOptions: {
       ident: 'postcss',
-      config: false,
       plugins: [
         'postcss-flexbugs-fixes',
         [
           'postcss-preset-env',
           {
+            browsers: '> 5% in KR, defaults, not IE < 11',
             autoprefixer: {
               flexbox: 'no-2009',
             },
             stage: 3,
           },
         ],
-        'postcss-normalize',
+        postcssNormalize(),
       ],
     },
-    sourceMap: false,
+    sourceMap: true,
   },
 }
 module.exports = {
@@ -51,41 +46,13 @@ module.exports = {
     rules: [
       { test: /\.js$/, exclude: /node_modules/, use: ['babel-loader'] },
       { test: /\.ts|.tsx$/, exclude: /node_modules/, use: ['ts-loader'] },
-
       {
-        test: /\.css$/,
-        exclude: /\.module\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader', postcssConfig],
       },
       {
-        test: /\.module\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-            },
-          },
-        ],
-      },
-      {
-        test: /\.scss$/,
-        exclude: /\.module\.scss$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
-      },
-      {
-        test: /\.module\.scss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-            },
-          },
-          'sass-loader',
-        ],
+        test: /\.s[ac]ss$/i,
+        use: ['style-loader', 'css-loader', postcssConfig, 'sass-loader'],
       },
     ],
   },
