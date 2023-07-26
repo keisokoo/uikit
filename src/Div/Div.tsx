@@ -1,3 +1,4 @@
+'use client'
 import styled, { css } from 'styled-components'
 import { AddCss, convertObjectToCSS } from './Div.helpers'
 import { DivProps } from './Div.type'

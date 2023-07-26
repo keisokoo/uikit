@@ -1,3 +1,4 @@
+'use client'
 import classNames from 'classnames'
 import React, { MutableRefObject, useRef, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
@@ -27,6 +28,7 @@ const DefaultTextInput = ({
   const inputRef = useRef() as MutableRefObject<HTMLInputElement>
   const [focus, set_focus] = useState<boolean>(false)
   const [valued, set_valued] = useState<boolean>(false)
+  if (!ThemeProvider) return null
   return (
     <ThemeProvider
       theme={customTheme ? getTextInputTheme(customTheme) : TextInputTheme}
