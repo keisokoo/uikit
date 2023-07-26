@@ -85,7 +85,12 @@ const defaultConfig = {
       },
     }),
     resolve({
-      dedupe: ['styled-components'],
+      dedupe: [
+        'styled-components',
+        'react-syntax-highlighter',
+        'react-dom',
+        'react',
+      ],
       moduleDirectories: ['node_modules'],
     }),
     babel({
