@@ -1,35 +1,37 @@
 import { DEFAULT_EXTENSIONS } from '@babel/core'
 import babel from '@rollup/plugin-babel'
-import json from '@rollup/plugin-json'
+import commonjs from '@rollup/plugin-commonjs'
+import resolve from '@rollup/plugin-node-resolve'
+import replace from '@rollup/plugin-replace'
 import typescript from '@rollup/plugin-typescript'
-import commonjs from 'rollup-plugin-commonjs'
-import fileSize from 'rollup-plugin-filesize'
+import filesize from 'rollup-plugin-filesize'
 import license from 'rollup-plugin-license'
-import resolve from 'rollup-plugin-node-resolve'
+import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import postcss from 'rollup-plugin-postcss'
-import replace from 'rollup-plugin-replace'
-import { uglify } from 'rollup-plugin-uglify'
 
-import PACKAGE from './package.json'
+import PACKAGE from './package.json' assert { type: 'json' }
+
 const fullYear = new Date().getFullYear()
 
 const banner = `${PACKAGE.name} - ${PACKAGE.version}
   Author : ${PACKAGE.author}
   Copyright (c) ${fullYear !== 2016 ? '2016,' : ''} ${fullYear} to ${
-  PACKAGE.author
-}, released under the ${PACKAGE.license} license.`
+    PACKAGE.author
+  }, released under the ${PACKAGE.license} license.`
 
 const globals = {
   react: 'React',
-  'styled-components': 'styled',
-  'react-syntax-highlighter': 'reactSyntaxHighlighter',
+  'react-dom': 'ReactDOM',
+  'styled-components': 'StyledComponents',
+  'react-syntax-highlighter': 'ReactSyntaxHighlighter',
+  'react-syntax-highlighter/dist/esm/styles/prism': 'PrismStyles',
 }
 
 const defaultConfig = {
   onwarn(warning, warn) {
     if (
       warning.code === 'MODULE_LEVEL_DIRECTIVE' &&
-      warning.message.includes(`'use client'`)
+      warning.message.includes(`"use client"`)
     ) {
       return
     }
@@ -42,12 +44,14 @@ const defaultConfig = {
       format: 'esm',
       globals,
       exports: 'auto',
+      interop: 'compat',
     },
     {
       file: 'dist/kui.cjs.js',
       format: 'cjs',
       globals,
       exports: 'auto',
+      interop: 'compat',
     },
     {
       file: 'dist/kui.js',
@@ -55,6 +59,7 @@ const defaultConfig = {
       name: 'Kui',
       globals,
       exports: 'auto',
+      interop: 'compat',
     },
   ],
   external: [
@@ -64,31 +69,35 @@ const defaultConfig = {
     'react-syntax-highlighter',
   ],
   plugins: [
+    peerDepsExternal(),
+    typescript({
+      target: 'es2016',
+    }),
     postcss({
       extract: false,
       modules: true,
       use: ['sass'],
     }),
-    typescript({
-      target: 'es2016',
+    replace({
+      preventAssignment: true,
+      values: {
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      },
     }),
-    // buble(),
-    json(),
+    resolve({
+      dedupe: ['styled-components'],
+      moduleDirectories: ['node_modules'],
+    }),
     babel({
       extensions: [...DEFAULT_EXTENSIONS, '.ts', 'tsx'],
       exclude: /node_modules/,
+      babelHelpers: 'bundled',
     }),
-    replace({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-    }),
-    resolve(),
     commonjs({
       include: /node_modules/,
     }),
-    fileSize(),
-    license({
-      banner,
-    }),
+    filesize(),
+    license({ banner }),
   ],
 }
 
@@ -101,7 +110,7 @@ const minConfig = {
     globals,
     exports: 'auto',
   },
-  plugins: [...defaultConfig.plugins, uglify()],
+  plugins: [...defaultConfig.plugins],
 }
 
 export default [defaultConfig, minConfig]

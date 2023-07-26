@@ -4,6 +4,11 @@
     "requireConfigFile": false,
     "babelOptions": {
       "plugins": ["styled-components"]
+    },
+    "ecmaVersion": 2023,
+    "ecmaFeatures": {
+      "importAssertions": true,
+      "importAttributes": true
     }
   }
 }
