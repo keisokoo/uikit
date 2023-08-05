@@ -20,6 +20,7 @@ function indexString(answer: string) {
 function componentString(answer: string) {
   const pascalName = pascal(answer)
   return `'use client'
+  import React from 'react'
   import ${pascalName}Style from './${pascalName}.styled'
   import { ${pascalName}Props } from './${pascalName}.type'
   
