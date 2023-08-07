@@ -23,34 +23,48 @@ function componentString(answer: string) {
   import React from 'react'
   import ${pascalName}Style from './${pascalName}.styled'
   import { ${pascalName}Props } from './${pascalName}.type'
+  import { ${pascalName}Provider } from './${pascalName}.theme'
   
   const { Wrap } = ${pascalName}Style
   
-  export default function ${pascalName}({ $css, ...props }: ${pascalName}Props) {
+  const Default${pascalName} = ({ $css, customTheme, ...props }: ${pascalName}Props) => {
     return (
+      <${pascalName}Provider customTheme={customTheme}>
         <Wrap $css={$css} {...props}>
           ${pascalName}
         </Wrap>
+      </${pascalName}Provider>
     )
   }
+  
+  const ${pascalName} = (props: ${pascalName}Props) => {
+    return <Default${pascalName} {...props} />
+  }
+
+  export default ${pascalName}
   `
 }
 function typesString(answer: string) {
   const pascalName = pascal(answer)
   return `import { DetailedHTMLProps, HTMLAttributes } from 'react'
   import { CSSProp } from 'styled-components'
+  import { PartialDeep } from 'type-fest'
+  import { ${pascalName}ThemeType } from './${pascalName}.theme'
 
   export interface ${pascalName}Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
     $css?: CSSProp | string
+    customTheme?: PartialDeep<${pascalName}ThemeType>
   }
   `
 }
 function stylesString(answer: string) {
   const pascalName = pascal(answer)
   return `import styled, { CSSProp, css } from 'styled-components'
+  import { ${pascalName}ThemeType } from './${pascalName}.theme'
   
   interface ${pascalName}Props {
     $css?: CSSProp | string
+    theme: ${pascalName}ThemeType
   }
   const ${pascalName}Style = {
     Wrap: styled.div<${pascalName}Props>(
@@ -60,6 +74,59 @@ function stylesString(answer: string) {
     ),
   }
   export default ${pascalName}Style
+  `
+}
+function themeString(answer: string) {
+  const pascalName = pascal(answer)
+  return `
+import { KuiContext } from '@/KuiProvider/context'
+import { DefaultThemes } from '@/themes'
+import { merge } from 'lodash-es'
+import React from 'react'
+import { ThemeProvider } from 'styled-components'
+import { PartialDeep } from 'type-fest'
+
+export function get${pascalName}Style(theme: DefaultThemes) {
+  const { colors, fonts } = theme
+  return {
+    color: {
+      textColor: colors.foreground,
+    },
+    textStyle: {
+      default: fonts.default,
+    },
+  }
+}
+export type ${pascalName}ThemeType = ReturnType<typeof get${pascalName}Style>
+
+export const get${pascalName}Theme = (
+  currentTheme: ${pascalName}ThemeType,
+  customTheme?: PartialDeep<${pascalName}ThemeType>
+) => {
+  const theme = merge(currentTheme, customTheme)
+  return theme
+}
+export const ${pascalName}Provider = ({
+  children,
+  customTheme,
+}: {
+  children: React.ReactNode
+  customTheme?: PartialDeep<${pascalName}ThemeType>
+}) => {
+  const globalTheme = React.useContext(KuiContext)
+  const default${pascalName}Theme = get${pascalName}Style(globalTheme.theme)
+  return (
+    <ThemeProvider
+      theme={
+        customTheme
+          ? get${pascalName}Theme(default${pascalName}Theme, customTheme)
+          : default${pascalName}Theme
+      }
+    >
+      {children}
+    </ThemeProvider>
+  )
+}
   `
 }
 rl.question('이름이 무엇입니까? ', async (answer) => {
@@ -84,6 +151,10 @@ rl.question('이름이 무엇입니까? ', async (answer) => {
   await createComponent(
     typesString(answer),
     `${currentPath}/${directoryName}/${pascalName}.type.tsx`
+  )
+  await createComponent(
+    themeString(answer),
+    `${currentPath}/${directoryName}/${pascalName}.theme.tsx`
   )
   await createComponent(
     componentString(answer),

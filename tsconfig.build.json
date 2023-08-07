@@ -4,10 +4,14 @@
     "esModuleInterop": true,
     "downlevelIteration": true,
     "noImplicitAny": true,
-    "outDir": "./types",
+    "outDir": "./dist/types",
     "declaration": true,
     "skipLibCheck": true,
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
   },
   "include": ["src", "typings.d.ts"]
 }

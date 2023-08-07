@@ -5,7 +5,7 @@
   "description": "",
   "main": "dist/kui.cjs.js",
   "module": "dist/kui.es.js",
-  "types": "types/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "browserslist": "last 2 versions",
   "files": [
     "dist",
@@ -88,6 +88,7 @@
     "styled-components": "^6.0.5",
     "ts-loader": "^9.4.4",
     "ts-node": "^10.9.1",
+    "tsconfig-paths-webpack-plugin": "^4.1.0",
     "tslib": "^2.6.1",
     "typescript": "^5.1.6",
     "webpack": "^5.88.2",

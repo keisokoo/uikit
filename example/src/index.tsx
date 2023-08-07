@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { css } from 'styled-components'
-import { CodeBlock, Div, TextInput } from '../../src'
+import { CodeBlock, Div, Dropdown, KuiProvider, TextInput } from '../../src'
 import '../scss/style.scss'
 
 function App() {
@@ -20,10 +20,25 @@ function App() {
         <div>2</div>
         <div>3</div>
       </Div>
-      <TextInput placeholder="입력해주세요." />
-      <CodeBlock title="test.tsx">{`interface TestProps{
+      <div>
+        <TextInput.Box
+          placeholder="입력해주세요."
+          customTheme={{ color: { box: { textColor: 'blue' } } }}
+        />
+      </div>
+      <div>
+        <KuiProvider theme={{ colors: { foreground: 'white' } }}>
+          <TextInput.Underline placeholder="입력해주세요." />
+        </KuiProvider>
+      </div>
+      <div>
+        <Dropdown list={['a', 'bbbbbb', 'c']} />
+      </div>
+      <div>
+        <CodeBlock title="test.tsx">{`interface TestProps{
   hello?: string
 }`}</CodeBlock>
+      </div>
     </div>
   )
 }

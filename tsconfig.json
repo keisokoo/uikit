@@ -4,7 +4,11 @@
     "esModuleInterop": true,
     "downlevelIteration": true,
     "noImplicitAny": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
   },
   "include": ["src", "typings.d.ts"],
   "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts", "scripts/**/*"],

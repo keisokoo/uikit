@@ -1,6 +1,8 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const postcssNormalize = require('postcss-normalize')
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
+
 const postcssConfig = {
   loader: 'postcss-loader',
   options: {
@@ -35,6 +37,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.css', '.scss'],
+    plugins: [new TsconfigPathsPlugin({ configFile: './tsconfig.json' })],
   },
   devServer: {
     static: {

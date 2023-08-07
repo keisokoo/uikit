@@ -1,9 +1,8 @@
 'use client'
 import classNames from 'classnames'
 import React, { MutableRefObject, useRef, useState } from 'react'
-import { ThemeProvider } from 'styled-components'
 import TextInputStyle from './TextInput.styled'
-import TextInputTheme, { getTextInputTheme } from './TextInput.theme'
+import { TextInputProvider } from './TextInput.theme'
 import { TextInputProps, TextInputStyleType } from './TextInput.type'
 import { DeleteInput } from './icons'
 
@@ -12,7 +11,7 @@ const { Wrap, Input } = TextInputStyle
 const DefaultTextInput = ({
   $wrapCss,
   wrapProps,
-  inputStyle,
+  inputStyle = 'default',
   prepend,
   append,
   $radius,
@@ -20,6 +19,7 @@ const DefaultTextInput = ({
   onBlur,
   onChange,
   customTheme,
+  disableRemoveButton,
   ...props
 }: TextInputProps & {
   inputStyle: TextInputStyleType
@@ -28,11 +28,8 @@ const DefaultTextInput = ({
   const inputRef = useRef() as MutableRefObject<HTMLInputElement>
   const [focus, set_focus] = useState<boolean>(false)
   const [valued, set_valued] = useState<boolean>(false)
-  if (!ThemeProvider) return null
   return (
-    <ThemeProvider
-      theme={customTheme ? getTextInputTheme(customTheme) : TextInputTheme}
-    >
+    <TextInputProvider customTheme={customTheme}>
       <Wrap
         className={classNames({
           readOnly: props.readOnly,
@@ -64,7 +61,7 @@ const DefaultTextInput = ({
           {...props}
         />
         {append}
-        {valued && (
+        {!disableRemoveButton && (
           <button
             className="delete-icon"
             onClick={() => {
@@ -88,7 +85,7 @@ const DefaultTextInput = ({
           </button>
         )}
       </Wrap>
-    </ThemeProvider>
+    </TextInputProvider>
   )
 }
 
@@ -101,8 +98,9 @@ const UnderlineInput = (props: TextInputProps) => (
 )
 
 const TextInput = (props: TextInputProps & { $radius?: number | string }) => (
-  <BoxInput {...props} />
+  <DefaultTextInput inputStyle="default" {...props} />
 )
 TextInput.Underline = UnderlineInput
+TextInput.Box = BoxInput
 
 export default TextInput

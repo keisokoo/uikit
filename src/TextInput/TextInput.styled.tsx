@@ -1,16 +1,14 @@
 import styled, { CSSProp, css } from 'styled-components'
-import {
-  CurrentTextInputThemeType,
-  TextInputStyleProps,
-  TextInputStyleType,
-} from './TextInput.type'
+import { TextInputThemeType } from './TextInput.theme'
+import { TextInputStyleProps, TextInputStyleType } from './TextInput.type'
 
 const getWrapStyle = (
-  props: CurrentTextInputThemeType,
+  props: TextInputThemeType,
   styleType: TextInputStyleType
 ) => {
   const { color, textStyle } = props
   const WrapStyleCSS = {
+    default: css``,
     box: css`
       border: 1px solid ${color.box.borderColor};
       background-color: ${color.box.backgroundColor};
@@ -30,7 +28,6 @@ const getWrapStyle = (
         border: 1px solid ${color.box.borderDisabledColor};
       }
     `,
-    round: css``,
     underline: css`
       border-bottom: 1px solid ${color.underline.borderColor};
       background-color: transparent;
@@ -53,11 +50,20 @@ const getWrapStyle = (
   return WrapStyleCSS[styleType]
 }
 const getInputStyle = (
-  props: CurrentTextInputThemeType,
+  props: TextInputThemeType,
   styleType: TextInputStyleType
 ) => {
   const { color, textStyle } = props
   const InputStyleCSS = {
+    default: css`
+      appearance: none;
+      border: none;
+      outline: none;
+      width: 100%;
+      background-color: transparent;
+      color: inherit;
+      ${textStyle.default}
+    `,
     box: css`
       appearance: none;
       border: none;
@@ -74,7 +80,6 @@ const getInputStyle = (
         color: ${color.box.textDisabledColor};
       }
     `,
-    round: css``,
     underline: css`
       appearance: none;
       border: none;

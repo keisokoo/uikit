@@ -1,41 +1,33 @@
 'use client'
+import { DefaultThemes, defaultThemes } from '@/themes'
+import { merge } from 'lodash-es'
 import React from 'react'
-import { ThemeProvider } from 'styled-components'
-import { defaultThemes } from '../themes'
-import { KuiContext, KuiContextProps } from './context'
+import { PartialDeep } from 'type-fest'
+import { KuiContext } from './context'
 
-interface KuiProviderProps {
+export interface KuiProviderProps {
   children: React.ReactNode
-  theme?: KuiContextProps
+  theme?: PartialDeep<DefaultThemes>
 }
 interface UseThemeProps {
-  theme?: typeof defaultThemes
+  theme?: PartialDeep<DefaultThemes>
 }
 const useTheme = ({ theme }: UseThemeProps) => {
-  const [themes, setThemes] = React.useState<typeof defaultThemes>(
-    theme ?? defaultThemes
+  const [themes, setThemes] = React.useState<DefaultThemes>(
+    theme ? merge(defaultThemes, theme) : defaultThemes
   )
-  const handleTheme = (_theme?: Partial<typeof defaultThemes>) => {
-    setThemes({ ...themes, ..._theme })
+
+  const handleTheme = (_theme?: PartialDeep<DefaultThemes>) => {
+    setThemes(merge(themes, _theme))
   }
+
   const currentTheme = { theme: themes, setTheme: handleTheme }
+
   return currentTheme
 }
-const KuiProvider = ({ children, theme }: KuiProviderProps) => {
-  const currentTheme = useTheme({ theme: theme?.theme })
-  return (
-    <KuiContext.Provider value={currentTheme}>{children}</KuiContext.Provider>
-  )
-}
-interface StyledProviderProps {
-  children: React.ReactNode
-  theme?: typeof defaultThemes
-}
-export const StyledProvider = ({ children, theme }: StyledProviderProps) => {
+export const KuiProvider = ({ children, theme }: KuiProviderProps) => {
   const currentTheme = useTheme({ theme })
   return (
-    <KuiProvider theme={currentTheme}>
-      <ThemeProvider theme={currentTheme}>{children}</ThemeProvider>
-    </KuiProvider>
+    <KuiContext.Provider value={currentTheme}>{children}</KuiContext.Provider>
   )
 }

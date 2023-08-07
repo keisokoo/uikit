@@ -1,7 +1,7 @@
 import { DetailedHTMLProps, InputHTMLAttributes } from 'react'
 import { CSSProp } from 'styled-components'
 import { PartialDeep } from 'type-fest'
-import TextInputTheme, { TextInputThemeType } from './TextInput.theme'
+import { TextInputThemeType } from './TextInput.theme'
 
 export interface TextInputProps
   extends DetailedHTMLProps<
@@ -14,11 +14,11 @@ export interface TextInputProps
   prepend?: React.ReactNode
   append?: React.ReactNode
   customTheme?: PartialDeep<TextInputThemeType>
+  disableRemoveButton?: boolean
 }
-export type CurrentTextInputThemeType = typeof TextInputTheme
-export type TextInputStyleType = 'box' | 'underline'
+export type TextInputStyleType = 'default' | 'box' | 'underline'
 export interface TextInputStyleProps {
-  theme: CurrentTextInputThemeType
+  theme: TextInputThemeType
   $css?: CSSProp | string
   $inputStyle: TextInputStyleType
   $radius?: number | string
