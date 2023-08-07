@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react'
 
-const useOutsideClick = (
+export const useOutsideClick = (
   innerSideDom: HTMLDivElement | string,
   callback: (currentTarget: Element) => void,
   dependencies?: any[]
@@ -33,4 +33,3 @@ const useOutsideClick = (
     }
   }, [innerSideDom, dependencies, CallBack])
 }
-export default useOutsideClick

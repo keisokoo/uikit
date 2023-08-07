@@ -9,3 +9,5 @@ export type { KuiContextProps, KuiProviderProps } from './KuiProvider'
 export { TextInput } from './TextInput'
 export type { TextInputProps } from './TextInput'
 export { defaultThemes } from './themes'
+
+export { useOutsideClick } from './hooks'

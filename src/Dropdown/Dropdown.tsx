@@ -1,5 +1,5 @@
 'use client'
-import useOutsideClick from '@/hooks/useOutsideClick'
+import { useOutsideClick } from '@/hooks'
 import classNames from 'classnames'
 import { uniq } from 'lodash-es'
 import React from 'react'
