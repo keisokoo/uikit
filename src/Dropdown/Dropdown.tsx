@@ -2,7 +2,7 @@
 import { useOutsideClick } from '@/hooks'
 import classNames from 'classnames'
 import { uniq } from 'lodash-es'
-import React from 'react'
+import React, { useEffect } from 'react'
 import DropdownStyle from './Dropdown.styled'
 import { DropdownProvider } from './Dropdown.theme'
 import { DropdownListType, DropdownProps } from './Dropdown.type'
@@ -10,7 +10,7 @@ import SvgCaretDown from './icons/CaretDown'
 
 const { Wrap, Label, List, Item } = DropdownStyle
 
-const DefaultDropdown = ({
+const DefaultDropdown = <T extends string | number>({
   $css,
   $width,
   list,
@@ -18,42 +18,54 @@ const DefaultDropdown = ({
   placeholder = '선택해주세요.',
   disabled,
   readOnly,
+  value,
+  emitValue,
   ...props
-}: DropdownProps) => {
+}: DropdownProps<T>) => {
+  const [init, set_init] = React.useState<boolean>(false)
   const [focus, set_focus] = React.useState<boolean>(false)
   const [minWidth, set_minWidth] = React.useState<number>(0)
-  const [value, set_value] = React.useState<
+  const [selectedItem, set_selectedItem] = React.useState<
     { [key in string | number]: string | number } | null
   >(null)
   const valueKey = React.useMemo(() => {
-    if (value) {
-      return Object.keys(value)[0]
+    if (selectedItem) {
+      return Object.keys(selectedItem)[0]
     }
     return null
-  }, [value])
+  }, [selectedItem])
 
   const labelString = React.useMemo(() => {
-    if (value) {
-      return value[valueKey]
+    if (selectedItem) {
+      return selectedItem[valueKey]
     }
     return null
-  }, [value])
+  }, [selectedItem])
   const [memorizedList, set_memorizedList] =
-    React.useState<DropdownListType | null>(null)
+    React.useState<DropdownListType<T> | null>(null)
   const [currentList, set_currentList] =
-    React.useState<DropdownListType | null>(null)
+    React.useState<DropdownListType<T> | null>(null)
 
   const getCurrentList = React.useCallback(() => {
     if (Array.isArray(list)) {
-      const obj = uniq(list).reduce((acc, cur) => {
+      const obj = (uniq(list) as Array<T>).reduce((acc, cur) => {
         acc[cur] = cur
         return acc
-      }, {} as DropdownListType)
+      }, {} as DropdownListType<T>)
       return obj
     } else {
       return list
     }
   }, [list])
+
+  useEffect(() => {
+    if (value && list) {
+      const current = getCurrentList()
+      const obj = current[value as T]
+      set_selectedItem({ [value]: obj })
+    }
+    set_init(true)
+  }, [value, getCurrentList])
 
   React.useEffect(() => {
     const obj = getCurrentList()
@@ -82,7 +94,7 @@ const DefaultDropdown = ({
         {minWidth === 0 && !$width && (
           <List ref={memorizedRef}>
             {memorizedList &&
-              Object.keys(memorizedList).map((key) => (
+              (Object.keys(memorizedList) as Array<T>).map((key) => (
                 <div key={key} data-value={key.toString()}>
                   {memorizedList[key]}
                 </div>
@@ -95,6 +107,7 @@ const DefaultDropdown = ({
           {...(!$width && { style: { minWidth } })}
           $width={$width}
           className={classNames({
+            focus,
             disabled,
             readOnly,
             active: currentList !== null,
@@ -132,12 +145,12 @@ const DefaultDropdown = ({
             set_focus(false)
           }}
         >
-          <div>{labelString ?? placeholder}</div>
+          <div>{init ? labelString ?? placeholder : ''}</div>
           <SvgCaretDown width={18} height={18} />
         </Label>
         {currentList && (
           <List className={classNames({ focus })}>
-            {Object.keys(currentList).map((key, index) => (
+            {(Object.keys(currentList) as Array<T>).map((key, index) => (
               <Item
                 ref={refs[index]}
                 tabIndex={0}
@@ -145,16 +158,26 @@ const DefaultDropdown = ({
                 className={classNames({ current: valueKey === key })}
                 data-value={key.toString()}
                 onClick={() => {
-                  set_value({ [key]: currentList[key] })
+                  set_selectedItem({ [key]: currentList[key] })
                   set_currentList(null)
                   labelRef.current?.focus()
+                  emitValue && emitValue(key)
+                }}
+                onFocus={() => {
+                  if (disabled || readOnly) return
+                  set_focus(true)
+                }}
+                onBlur={() => {
+                  if (disabled || readOnly) return
+                  set_focus(false)
                 }}
                 onKeyDown={(e) => {
                   if (disabled || readOnly) return
                   if (e.code.includes('Enter') || e.code === 'Space') {
-                    set_value({ [key]: currentList[key] })
+                    set_selectedItem({ [key]: currentList[key] })
                     set_currentList(null)
                     labelRef.current?.focus()
+                    emitValue && emitValue(key)
                   }
                   if (e.key === 'ArrowDown') {
                     const activeIndex =
@@ -181,7 +204,7 @@ const DefaultDropdown = ({
   )
 }
 
-const Dropdown = (props: DropdownProps) => {
+const Dropdown = <T extends string | number>(props: DropdownProps<T>) => {
   return <DefaultDropdown {...props} />
 }
 

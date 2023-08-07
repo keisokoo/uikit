@@ -5,6 +5,7 @@ import { CodeBlock, Div, Dropdown, KuiProvider, TextInput } from '../../src'
 import '../scss/style.scss'
 
 function App() {
+  const [value, set_value] = React.useState<string | null>(null)
   return (
     <div>
       <Div
@@ -38,6 +39,9 @@ function App() {
       <div>
         <br />
         <Dropdown
+          $width={220}
+          value={value}
+          emitValue={(value) => set_value(value)}
           list={[
             'a',
             'bbbbbb',

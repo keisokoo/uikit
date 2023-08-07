@@ -38,7 +38,9 @@ const DropdownStyle = {
       &.placeholder {
         color: ${color.placeholderColor};
       }
-      &:focus {
+      &:focus,
+      &.focus,
+      &:active {
         outline: none;
         background-color: ${color.backgroundFocusColor};
         border: 1px solid ${color.borderFocusColor};
@@ -101,7 +103,8 @@ const DropdownStyle = {
       &:hover {
         background-color: ${color.backgroundHoverColor};
       }
-      &:focus {
+      &:focus,
+      &:active {
         outline: none;
         background-color: ${color.backgroundFocusColor};
       }
