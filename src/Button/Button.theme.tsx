@@ -9,7 +9,30 @@ export function getButtonStyle(theme: DefaultThemes) {
   const { colors, fonts } = theme
   return {
     color: {
-      textColor: colors.foreground,
+      fill: {
+        textColor: colors.foreground,
+        textDisabledColor: colors.gray5,
+        backgroundColor: colors.gray6,
+        backgroundActiveColor: colors.white30,
+        backgroundFocusColor: colors.fog,
+        backgroundHoverColor: colors.fog,
+        borderColor: colors.gray4,
+        borderFocusColor: colors.primary,
+        borderDisabledColor: colors.white30,
+        iconFocusColor: colors.primary,
+      },
+      border: {
+        textColor: colors.foreground,
+        textDisabledColor: colors.gray5,
+        backgroundColor: colors.transparent,
+        backgroundActiveColor: colors.white30,
+        backgroundFocusColor: colors.white10,
+        backgroundHoverColor: colors.white10,
+        borderColor: colors.white20,
+        borderFocusColor: colors.primary,
+        borderDisabledColor: colors.white30,
+        iconFocusColor: colors.primary,
+      },
     },
     textStyle: {
       default: fonts.default,

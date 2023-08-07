@@ -2,6 +2,7 @@ const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const postcssNormalize = require('postcss-normalize')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 
 const postcssConfig = {
   loader: 'postcss-loader',
@@ -40,14 +41,28 @@ module.exports = {
     plugins: [new TsconfigPathsPlugin({ configFile: './tsconfig.json' })],
   },
   devServer: {
+    historyApiFallback: true,
     static: {
-      directory: path.join(__dirname, 'example'),
+      directory: path.join(__dirname, 'example/public'),
     },
+    compress: true,
+    hot: true,
   },
-  plugins: [new MiniCssExtractPlugin()],
+  plugins: [new MiniCssExtractPlugin(), new ReactRefreshWebpackPlugin()],
   module: {
     rules: [
-      { test: /\.js$/, exclude: /node_modules/, use: ['babel-loader'] },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: require.resolve('babel-loader'),
+            options: {
+              plugins: [require.resolve('react-refresh/babel')].filter(Boolean),
+            },
+          },
+        ],
+      },
       { test: /\.ts|.tsx$/, exclude: /node_modules/, use: ['ts-loader'] },
       {
         test: /\.css$/i,

@@ -1,10 +1,12 @@
 const colors = {
+  transparent: 'transparent',
   foreground: '#e2dbdb',
   background: '#1c1c1c',
   white: '#FFFFFF',
   white70: '#ffffffb2',
   white50: '#ffffff7f',
   white30: '#ffffff4c',
+  white20: '#ffffff2d',
   white10: '#ffffff19',
   gray0: '#d4cfca',
   gray1: '#cdcdcd',
