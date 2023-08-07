@@ -54,5 +54,12 @@ export const CodeBlockStyle = {
     display: flex;
     align-items: center;
     gap: 8px;
+    &:focus {
+      outline: none;
+      path {
+        fill: #007cc3;
+      }
+      color: #007cc3;
+    }
   `,
 }

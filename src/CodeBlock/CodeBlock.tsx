@@ -42,14 +42,21 @@ export const CodeBlock = ({
             </Clipboard>
           ) : (
             <Clipboard
+              tabIndex={0}
               className="copy-icon"
               onClick={async () => {
                 try {
                   const copied = await copyToClipboard(children?.trim() ?? '')
-                  console.log('copied', copied)
                   if (copied === 'error') return
                   set_copyStatus(true)
                 } catch (error) {}
+              }}
+              onKeyDown={async (e) => {
+                if (e.code.includes('Enter') || e.code === 'Space') {
+                  const copied = await copyToClipboard(children?.trim() ?? '')
+                  if (copied === 'error') return
+                  set_copyStatus(true)
+                }
               }}
             >
               <Copy />

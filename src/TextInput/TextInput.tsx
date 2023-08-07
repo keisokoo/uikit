@@ -63,7 +63,7 @@ const DefaultTextInput = ({
         {append}
         {!disableRemoveButton && (
           <button
-            className="delete-icon"
+            className={classNames('delete-icon', { hidden: !focus })}
             onClick={() => {
               if (!valued) return
               const inputEl = inputRef.current

@@ -10,7 +10,10 @@ export type DropdownListType = {
 export interface DropdownProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   $css?: CSSProp | string
+  $width?: number | string
   list: string[] | DropdownListType
   placeholder?: string
   customTheme?: PartialDeep<DropdownThemeType>
+  disabled?: boolean
+  readOnly?: boolean
 }

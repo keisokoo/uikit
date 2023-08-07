@@ -10,6 +10,15 @@ export function getDropdownStyle(theme: DefaultThemes) {
   return {
     color: {
       textColor: colors.foreground,
+      textDisabledColor: colors.gray5,
+      backgroundColor: colors.gray6,
+      backgroundFocusColor: colors.fog,
+      backgroundHoverColor: colors.fog,
+      borderColor: colors.gray4,
+      borderFocusColor: colors.primary,
+      placeholderColor: colors.gray3,
+      borderDisabledColor: colors.white30,
+      textFocusColor: colors.primary,
     },
     textStyle: {
       default: fonts.default,

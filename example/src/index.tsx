@@ -21,20 +21,41 @@ function App() {
         <div>3</div>
       </Div>
       <div>
+        <br />
         <TextInput.Box
           placeholder="입력해주세요."
           customTheme={{ color: { box: { textColor: 'blue' } } }}
         />
+        <br />
       </div>
       <div>
+        <br />
         <KuiProvider theme={{ colors: { foreground: 'white' } }}>
           <TextInput.Underline placeholder="입력해주세요." />
         </KuiProvider>
+        <br />
       </div>
       <div>
-        <Dropdown list={['a', 'bbbbbb', 'c']} />
+        <br />
+        <Dropdown
+          list={[
+            'a',
+            'bbbbbb',
+            'c',
+            'd',
+            'a',
+            'f',
+            'e',
+            'gg',
+            'fb',
+            'dp',
+            'asdf',
+          ]}
+        />
+        <br />
       </div>
       <div>
+        <br />
         <CodeBlock title="test.tsx">{`interface TestProps{
   hello?: string
 }`}</CodeBlock>

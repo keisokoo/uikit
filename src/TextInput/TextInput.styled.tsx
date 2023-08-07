@@ -118,6 +118,12 @@ const TextInputStyle = {
         &.delete-icon {
           width: 18px;
           height: auto;
+          &.hidden {
+            opacity: 0;
+          }
+          &:hover {
+            opacity: 1;
+          }
         }
         &:focus {
           outline: none;
