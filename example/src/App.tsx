@@ -11,6 +11,7 @@ import {
 } from '../../src'
 import LineGraph from '../../src/LineChart/LineGraph'
 import '../scss/style.scss'
+import DragSample from './DragSample'
 
 function App() {
   const [value, set_value] = React.useState<string | null>(null)
@@ -18,6 +19,16 @@ function App() {
     const test = LineGraph.getWeeks()
     console.log('test', test)
   }, [])
+  const [callDragSample, set_callDragSample] = React.useState(false)
+  if (callDragSample) {
+    return (
+      <DragSample
+        onClose={() => {
+          set_callDragSample(false)
+        }}
+      />
+    )
+  }
   return (
     <div>
       <Div
@@ -34,6 +45,15 @@ function App() {
         <div>3</div>
         <div>4</div>
       </Div>
+      <div>
+        <Button
+          onClick={() => {
+            set_callDragSample(true)
+          }}
+        >
+          드래그 샘플
+        </Button>
+      </div>
       <div>
         <br />
         <TextInput.Box

@@ -4,6 +4,14 @@ export { CodeBlock } from './CodeBlock'
 export type { CodeBlockProps } from './CodeBlock'
 export { Div } from './Div'
 export type { AddCssProps, CSSObject, DivProps, ExtraCss } from './Div'
+export {
+  ClickDrag,
+  ControlPosition,
+  Drag,
+  DragOrPinchZoom,
+  DragWithZoom,
+  TouchDragZoom,
+} from './DragAndZoom'
 export { Dropdown } from './Dropdown'
 export type { DropdownProps } from './Dropdown'
 export { KuiContext, KuiProvider } from './KuiProvider'
