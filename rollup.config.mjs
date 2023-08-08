@@ -19,6 +19,7 @@ const banner = `${PACKAGE.name} - ${PACKAGE.version}
   }, released under the ${PACKAGE.license} license.`
 
 const globals = {
+  dayjs: 'DayJs',
   react: 'React',
   'react-dom': 'ReactDOM',
   'styled-components': 'StyledComponents',
@@ -66,6 +67,7 @@ const defaultConfig = {
     'react-dom',
     'styled-components',
     'react-syntax-highlighter',
+    'dayjs',
   ],
   plugins: [
     peerDepsExternal(),
@@ -89,6 +91,7 @@ const defaultConfig = {
         'react-syntax-highlighter',
         'react-dom',
         'react',
+        'dayjs',
       ],
       moduleDirectories: ['node_modules'],
     }),

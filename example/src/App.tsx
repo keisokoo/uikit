@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { css } from 'styled-components'
 import {
   Button,
@@ -6,12 +6,18 @@ import {
   Div,
   Dropdown,
   KuiProvider,
+  LineChart,
   TextInput,
 } from '../../src'
+import LineGraph from '../../src/LineChart/LineGraph'
 import '../scss/style.scss'
 
 function App() {
   const [value, set_value] = React.useState<string | null>(null)
+  useEffect(() => {
+    const test = LineGraph.getWeeks()
+    console.log('test', test)
+  }, [])
   return (
     <div>
       <Div
@@ -88,6 +94,28 @@ function App() {
         <Button $buttonStyle="border" $width={140}>
           test
         </Button>
+      </div>
+      <div>
+        <br />
+        <LineChart
+          chartData={[
+            { y: 99, x: 0 },
+            { y: 95, x: 16.66 },
+            { y: 88, x: 33.33 },
+            { y: 98, x: 50 },
+            { y: 80, x: 66.66 },
+            { y: 86, x: 83.33 },
+            { y: 94, x: 100 },
+          ]}
+          width={257}
+          height={220}
+          YChartType={'맥박'}
+          XChartType={'주간'}
+          extraData={[
+            { value: 90, color: '#F34040', title: '샘플1' },
+            { value: 98, color: 'orange', title: '샘플2' },
+          ]}
+        />
       </div>
     </div>
   )
