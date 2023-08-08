@@ -1,5 +1,7 @@
 export { Button } from './Button'
 export type { ButtonProps } from './Button'
+export { Calendar, generateCalendar } from './Calendar'
+export type { CalendarProps, GeneratedReturnType } from './Calendar'
 export { CodeBlock } from './CodeBlock'
 export type { CodeBlockProps } from './CodeBlock'
 export { Div } from './Div'

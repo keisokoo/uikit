@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { css } from 'styled-components'
 import {
   Button,
+  Calendar,
   CodeBlock,
   Div,
   Dropdown,
@@ -9,16 +10,11 @@ import {
   LineChart,
   TextInput,
 } from '../../src'
-import LineGraph from '../../src/LineChart/LineGraph'
 import '../scss/style.scss'
 import DragSample from './DragSample'
 
 function App() {
   const [value, set_value] = React.useState<string | null>(null)
-  useEffect(() => {
-    const test = LineGraph.getWeeks()
-    console.log('test', test)
-  }, [])
   const [callDragSample, set_callDragSample] = React.useState(false)
   if (callDragSample) {
     return (
@@ -136,6 +132,9 @@ function App() {
             { value: 98, color: 'orange', title: '샘플2' },
           ]}
         />
+      </div>
+      <div>
+        <Calendar />
       </div>
     </div>
   )
