@@ -26,7 +26,7 @@ const {
 
 const DefaultLineChart = ({
   $css,
-  customTheme,
+  nextTheme,
   calibration = 10, // optional - 차트 height에 관여
   positionUp = 20, // optional - 차트 y 포치션
   chartData: _chartData, // 차트 데이터
@@ -108,7 +108,7 @@ const DefaultLineChart = ({
   }, [lineGraphData])
 
   return (
-    <LineChartProvider customTheme={customTheme}>
+    <>
       <LineChartWrap
         ref={chartWrapRef}
         $css={$css}
@@ -160,7 +160,7 @@ const DefaultLineChart = ({
                       key={'yValues' + index}
                       x={Y_AXIS_WIDTH / 2 - 1} // style적인 이유로 - 1을 해주었음, 큰 의미는 없음
                       y={item.axis}
-                      fill={'#1e1e1e'}
+                      fill={nextTheme?.color?.labelColor}
                     >
                       {item.label}
                     </YText>
@@ -190,7 +190,7 @@ const DefaultLineChart = ({
                     key={'xValues' + item.axis}
                     x={item.axis}
                     y={height + GRAPH_MARGIN_BOTTOM}
-                    fill={'#565656'}
+                    fill={nextTheme?.color?.labelColor}
                     data-date={item.label}
                   >
                     {item.label}
@@ -203,7 +203,7 @@ const DefaultLineChart = ({
                   <path
                     key={'y' + item.axis}
                     d={`M0 ${item.axis} H${graphWidth}`}
-                    stroke={'#D1D1D6'}
+                    stroke={nextTheme?.color?.lineColor}
                     strokeWidth={1}
                     {...(itemIndex !== lineGraphData.yAxis.length - 1 && {
                       strokeDasharray: `3 2`,
@@ -214,7 +214,7 @@ const DefaultLineChart = ({
               {/* 그래프 x축 그리기 */}
               <path
                 d={`M0 ${height} H${graphWidth}`}
-                stroke="#D1D1D6"
+                stroke={nextTheme?.color?.xLineColor}
                 strokeWidth={1}
               />
               {/* 그래프 평균 값 수평선 그리기 */}
@@ -224,7 +224,7 @@ const DefaultLineChart = ({
                     yAverage,
                     height
                   )} H${graphWidth}`}
-                  stroke={`#ACCCF8`}
+                  stroke={nextTheme?.color?.averageLineColor}
                   fill="transparent"
                   strokeWidth={1}
                 />
@@ -257,7 +257,7 @@ const DefaultLineChart = ({
                     <path
                       className="line"
                       d={lineGraphData.chartValues.chartLine}
-                      stroke={'#0c6bf0'}
+                      stroke={nextTheme?.color?.chartLineColor}
                       fill="transparent"
                       strokeWidth={1}
                     />
@@ -271,8 +271,8 @@ const DefaultLineChart = ({
                               cx={item.x}
                               cy={item.y}
                               r="4"
-                              fill={'#0c6bf0'}
-                              stroke={'white'}
+                              fill={nextTheme?.color?.chartCircleColor}
+                              stroke={nextTheme?.color?.chartStrokeColor}
                               strokeWidth={2}
                               alignmentBaseline={'middle'}
                             />
@@ -297,7 +297,10 @@ const DefaultLineChart = ({
       >
         <LineInfoWrap>
           <div>평균 :</div>
-          <div className="line" style={{ backgroundColor: '#ACCCF8' }}></div>
+          <div
+            className="line"
+            style={{ backgroundColor: nextTheme?.color.averageLineColor }}
+          ></div>
         </LineInfoWrap>
         {lineGraphData && lineGraphData.chartValues.extraData && (
           <>
@@ -317,7 +320,7 @@ const DefaultLineChart = ({
           </>
         )}
       </BottomInfoWrap>
-    </LineChartProvider>
+    </>
   )
 }
 
@@ -328,7 +331,11 @@ const GRAPH_MARGIN_TOP = 7
 const GRAPH_MARGIN_BOTTOM = 10
 
 const LineChart = (props: LineChartProps) => {
-  return <DefaultLineChart {...props} />
+  return (
+    <LineChartProvider customTheme={props.customTheme}>
+      <DefaultLineChart {...props} />
+    </LineChartProvider>
+  )
 }
 
 export default LineChart

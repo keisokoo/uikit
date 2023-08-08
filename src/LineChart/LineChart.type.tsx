@@ -103,4 +103,5 @@ export interface LineChartProps
   XChartType: '월간' | '주간' // 월간 차트인지, 주간 차트인지
   YChartType: keyof typeof CHART_TYPES | DefaultStepType // Y축의 종류 (체온인지, 맥박인지, .. 또는 기본 값)
   extraData?: ExtraChartData[]
+  nextTheme?: LineChartThemeType
 }

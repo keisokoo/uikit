@@ -65,7 +65,7 @@ const LineChartStyle = {
     `
   ),
   Nodata: styled.div<LineChartProps>(
-    ({ theme: { color }, $css }) => css`
+    ({ theme: { color, textStyle }, $css }) => css`
       position: absolute;
       left: 0;
       top: 0;
@@ -77,8 +77,8 @@ const LineChartStyle = {
       height: 100%;
       & > div {
         transform: translate(26px, -50%);
-        /* typography['Body/Small/Bold']} */
-        /* color:colors['Grayscale/Gray Dark']}; */
+        ${textStyle.smallBold}
+        color: ${color.textColor};
         background: #fff;
         padding: 8px 20px;
         white-space: nowrap;
@@ -100,27 +100,33 @@ const LineChartStyle = {
       ${$css ?? ''}
     `
   ),
-  YText: styled.text`
-    /* {typography['Body/Small/Regular']} */
-    font-size: 10px;
-  `,
-  XText: styled.text`
-    /* {typography['Body/Small/Regular']} */
-    font-size: 10px;
-    text-align: center;
-  `,
-  LineInfoWrap: styled.div`
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    /* {typography['Body/Small/Regular']} */
-    font-size: 12px;
-    /* color: {colors['Grayscale/Gray Default']}; */
-    .line {
-      width: 20px;
-      height: 2px;
-    }
-  `,
+  YText: styled.text<LineChartProps>(
+    ({ theme: { color }, $css }) => css`
+      font-size: 12px;
+      ${$css ?? ''}
+    `
+  ),
+  XText: styled.text<LineChartProps>(
+    ({ theme: { color }, $css }) => css`
+      font-size: 12px;
+      text-align: center;
+      ${$css ?? ''}
+    `
+  ),
+  LineInfoWrap: styled.div<LineChartProps>(
+    ({ theme: { color, textStyle }, $css }) => css`
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      ${textStyle.small}
+      font-size: 12px;
+      color: ${color.textDataColor};
+      .line {
+        width: 20px;
+        height: 2px;
+      }
+    `
+  ),
   BottomInfoWrap: styled.div`
     display: flex;
     align-items: center;

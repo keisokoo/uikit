@@ -27,8 +27,14 @@ const colors = {
 const fonts = {
   default:
     'font-size:16px;font-weight:400;letter-spacing:-0.6000000238418579px;line-height:24px;',
+  large:
+    'font-size:18px;font-weight:400;letter-spacing:-0.6000000238418579px;line-height:26px;',
+  largeBold:
+    'font-size:18px;font-weight:600;letter-spacing:-0.4000000238418579px;line-height:26px;',
   small:
     'font-size:14px;font-weight:400;letter-spacing:-0.6000000238418579px;line-height:20px;',
+  smallBold:
+    'font-size:14px;font-weight:600;letter-spacing:-0.4000000238418579px;line-height:20px;',
 }
 export const defaultThemes = { colors, fonts } as const
 export type DefaultThemes = typeof defaultThemes
