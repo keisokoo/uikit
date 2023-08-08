@@ -4,7 +4,6 @@ import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import typescript from '@rollup/plugin-typescript'
-import filesize from 'rollup-plugin-filesize'
 import license from 'rollup-plugin-license'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import postcss from 'rollup-plugin-postcss'
@@ -101,7 +100,6 @@ const defaultConfig = {
     commonjs({
       include: /node_modules/,
     }),
-    filesize(),
     license({ banner }),
   ],
 }

@@ -79,8 +79,8 @@ function stylesString(answer: string) {
 function themeString(answer: string) {
   const pascalName = pascal(answer)
   return `
-import { KuiContext } from '@/KuiProvider/context'
-import { DefaultThemes } from '@/themes'
+import { KuiContext } from '../KuiProvider/context'
+import { DefaultThemes } from '../themes'
 import { merge } from 'lodash-es'
 import React from 'react'
 import { ThemeProvider } from 'styled-components'

@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react'
 
 export const useOutsideClick = (
-  innerSideDom: HTMLDivElement | string,
+  innerSideDom: HTMLDivElement | string | null,
   callback: (currentTarget: Element) => void,
   dependencies?: any[]
 ) => {
@@ -13,6 +13,7 @@ export const useOutsideClick = (
   )
   useEffect(() => {
     function clickOutside(e: Event) {
+      if (!innerSideDom) return
       if (dependencies && !dependencies.every((item) => !!item === true)) return
       const EventTarget = e.target as Element
       const wrapTarget =
@@ -23,7 +24,11 @@ export const useOutsideClick = (
         CallBack(EventTarget)
       }
     }
-    if (dependencies && !dependencies.every((item) => !!item === true)) {
+    if (
+      innerSideDom &&
+      dependencies &&
+      !dependencies.every((item) => !!item === true)
+    ) {
       window.removeEventListener('click', clickOutside)
     } else {
       window.addEventListener('click', clickOutside, false)

@@ -1,9 +1,9 @@
-import { KuiContext } from '@/KuiProvider'
-import { DefaultThemes } from '@/themes'
 import { merge } from 'lodash-es'
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import { PartialDeep } from 'type-fest'
+import { KuiContext } from '../KuiProvider'
+import { DefaultThemes } from '../themes'
 
 export function getDropdownStyle(theme: DefaultThemes) {
   const { colors, fonts } = theme

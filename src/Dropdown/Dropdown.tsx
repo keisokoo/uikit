@@ -1,8 +1,8 @@
 'use client'
-import { useOutsideClick } from '@/hooks'
 import classNames from 'classnames'
 import { uniq } from 'lodash-es'
 import React, { useEffect } from 'react'
+import { useOutsideClick } from '../hooks'
 import DropdownStyle from './Dropdown.styled'
 import { DropdownProvider } from './Dropdown.theme'
 import { DropdownListType, DropdownProps } from './Dropdown.type'
@@ -36,7 +36,7 @@ const DefaultDropdown = <T extends string | number>({
   }, [selectedItem])
 
   const labelString = React.useMemo(() => {
-    if (selectedItem) {
+    if (selectedItem && valueKey !== null) {
       return selectedItem[valueKey]
     }
     return null
@@ -127,11 +127,13 @@ const DefaultDropdown = <T extends string | number>({
             if (currentList) {
               if (e.key === 'ArrowDown') {
                 const activeIndex = 0
-                refs[activeIndex].current.focus()
+                const currentRef = refs[activeIndex].current
+                if (currentRef) (currentRef as HTMLDivElement).focus()
                 e.preventDefault()
               } else if (e.key === 'ArrowUp') {
                 const activeIndex = Object.keys(currentList).length - 1
-                refs[activeIndex].current.focus()
+                const currentRef = refs[activeIndex].current
+                if (currentRef) (currentRef as HTMLDivElement).focus()
                 e.preventDefault()
               }
             }
@@ -182,13 +184,15 @@ const DefaultDropdown = <T extends string | number>({
                   if (e.key === 'ArrowDown') {
                     const activeIndex =
                       (index + 1) % Object.keys(currentList).length
-                    refs[activeIndex].current.focus()
+                    const currentRef = refs[activeIndex].current
+                    if (currentRef) (currentRef as HTMLDivElement).focus()
                     e.preventDefault()
                   } else if (e.key === 'ArrowUp') {
                     const activeIndex =
                       (index + Object.keys(currentList).length - 1) %
                       Object.keys(currentList).length
-                    refs[activeIndex].current.focus()
+                    const currentRef = refs[activeIndex].current
+                    if (currentRef) (currentRef as HTMLDivElement).focus()
                     e.preventDefault()
                   }
                 }}

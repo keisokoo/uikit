@@ -1,8 +1,8 @@
 'use client'
-import { DefaultThemes, defaultThemes } from '@/themes'
 import { merge } from 'lodash-es'
 import React from 'react'
 import { PartialDeep } from 'type-fest'
+import { DefaultThemes, defaultThemes } from '../themes'
 import { KuiContext } from './context'
 
 export interface KuiProviderProps {

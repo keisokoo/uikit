@@ -1,14 +1,13 @@
 {
   "compilerOptions": {
     "jsx": "react",
+    "declaration": true,
+    "strict": true,
+    "declarationDir": "./dist/types",
     "esModuleInterop": true,
     "downlevelIteration": true,
     "noImplicitAny": true,
     "skipLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    },
   },
   "include": ["src", "typings.d.ts"],
   "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts", "scripts/**/*"],
