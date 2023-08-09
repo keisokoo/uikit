@@ -124,7 +124,7 @@ function DragSample({ onClose }: DragSampleProps) {
         onMouseDown={ctr?.onDragStart}
       >
         <Target ref={boxRef}>
-          <h1 ref={headerRef}>Header({rotation})</h1>
+          <h1 ref={headerRef}>회전({rotation})</h1>
           <h2 ref={anotherRef}>벗어나지 않음</h2>
         </Target>
       </Wrap>

@@ -9,33 +9,37 @@ interface CalendarProps {
 }
 const CalendarStyle = {
   Wrap: styled.div<CalendarProps>(
-    ({ theme: { color }, $css }) => css`
+    ({ theme: { color, style }, $css }) => css`
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: ${style.calendarRowGap};
       & > div {
         flex: 1;
       }
-      width: 340px;
-      ${$css ?? ''}
+      width: ${style.calendarWidth};
+      height: ${style.calendarHeight};
+      color: ${color.textColor};
+      ${$css ?? ''};
     `
   ),
   WeeksRow: styled.div<CalendarProps>(
-    ({ theme: { color }, $css }) => css`
+    ({ theme: { color, style }, $css }) => css`
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: ${style.calendarColGap};
+      color: ${color.weeksColor};
       ${$css ?? ''}
     `
   ),
   WeekColumn: styled.div<CalendarProps>(
     ({ theme: { color }, $css }) => css`
-      &:first-of-type {
-        color: #ff7b7b;
+      /* &:first-of-type {
+        color: ${color.firstDayColor};
       }
       &:last-of-type {
-        color: #7b93ff;
-      }
+        color: ${color.lastDayColor};
+      } */
       display: flex;
       flex: 1;
       align-items: center;
@@ -47,20 +51,21 @@ const CalendarStyle = {
     `
   ),
   DaysRow: styled.div<CalendarProps>(
-    ({ theme: { color }, $css }) => css`
+    ({ theme: { color, style }, $css }) => css`
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: ${style.calendarColGap};
       ${$css ?? ''}
     `
   ),
   DayColumn: styled.div<CalendarProps>(
     ({ theme: { color }, $css }) => css`
       &:first-of-type .day-part {
-        color: #ff7b7b;
+        color: ${color.firstDayColor};
       }
       &:last-of-type .day-part {
-        color: #7b93ff;
+        color: ${color.lastDayColor};
       }
       flex: 1;
       display: flex;
@@ -68,10 +73,10 @@ const CalendarStyle = {
       justify-content: center;
       text-align: center;
       &.isSelected .day-part {
-        color: #ff6a00;
+        color: ${color.selectedTextColor};
       }
       &.isSelected .day-part {
-        background-color: #008b1c;
+        background-color: ${color.selectedBackgroundColor};
       }
       &.isSelected.hasComparisonDate:not(.comparisonDateInThisMonth) {
         position: relative;
@@ -82,7 +87,7 @@ const CalendarStyle = {
           z-index: -1;
           left: 40%;
           height: 100%;
-          background-color: #008b1c;
+          background-color: ${color.selectedBackgroundColor};
           border-radius: 50%;
           transform: translateX(-50%);
         }
@@ -92,26 +97,26 @@ const CalendarStyle = {
           width: 50%;
           left: 50%;
           height: 100%;
-          background-color: #008b1c;
+          background-color: ${color.selectedBackgroundColor};
         }
       }
       &.isToday .day-part {
-        color: #ffd737;
+        color: ${color.todayColor};
       }
       &.startBetween {
-        background-color: #008b1c;
+        background-color: ${color.selectedBackgroundColor};
         .day-part {
-          color: #58ff7a;
+          color: ${color.rangeTextColor};
         }
       }
       &.endBetween {
-        background-color: #008b1c;
+        background-color: ${color.selectedBackgroundColor};
         .day-part {
-          color: #58ff7a;
+          color: ${color.rangeTextColor};
         }
       }
       &.isGrayed .day-part {
-        color: #d3d3d37a;
+        color: ${color.outOfMonthsColor};
       }
       &.comparisonDateInThisMonth:not(.isSelected) {
         position: relative;
@@ -122,7 +127,7 @@ const CalendarStyle = {
           z-index: -1;
           left: 60%;
           height: 100%;
-          background-color: #008b1c;
+          background-color: ${color.selectedBackgroundColor};
           border-radius: 50%;
           transform: translateX(-50%);
         }
@@ -132,12 +137,12 @@ const CalendarStyle = {
           width: 50%;
           right: 50%;
           height: 100%;
-          background-color: #008b1c;
+          background-color: ${color.selectedBackgroundColor};
         }
       }
       &.comparisonDateInThisMonth .day-part {
         color: #ff6a00;
-        background-color: #008b1c;
+        background-color: ${color.selectedBackgroundColor};
       }
       ${$css ?? ''}
     `
@@ -163,16 +168,6 @@ const CalendarStyle = {
           justify-content: center;
         }
       }
-      ${$css ?? ''}
-    `
-  ),
-  TodayBackground: styled.div<CalendarProps>(
-    ({ theme: { color }, $css }) => css`
-      ${$css ?? ''}
-    `
-  ),
-  SelectedBackground: styled.div<CalendarProps>(
-    ({ theme: { color }, $css }) => css`
       ${$css ?? ''}
     `
   ),

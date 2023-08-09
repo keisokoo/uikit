@@ -19,8 +19,8 @@ export interface GeneratedReturnType {
 
 export const generateCalendar = (
   defaultDate: Dayjs,
-  selectedDate?: Dayjs,
-  comparisonDate?: Dayjs
+  selectedDate?: Dayjs | null,
+  comparisonDate?: Dayjs | null
 ): GeneratedReturnType[][] => {
   defaultDate =
     dayjs.isDayjs(defaultDate) && defaultDate.isValid() ? defaultDate : dayjs()

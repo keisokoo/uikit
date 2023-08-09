@@ -8,8 +8,23 @@ import { DefaultThemes } from '../themes'
 export function getCalendarStyle(theme: DefaultThemes) {
   const { colors, fonts } = theme
   return {
+    style: {
+      calendarWidth: '340px',
+      calendarHeight: 'auto',
+      calendarRowGap: '16px',
+      calendarColGap: '0px',
+    },
     color: {
       textColor: colors.foreground,
+      weeksColor: colors.foreground,
+      firstDayColor: '#ff7b7b',
+      lastDayColor: '#7b93ff',
+      daysColor: colors.foreground,
+      todayColor: '#ffd737',
+      selectedTextColor: '#ff6a00',
+      selectedBackgroundColor: '#008b1c',
+      rangeTextColor: '#58ff7a',
+      outOfMonthsColor: '#d3d3d37a',
     },
     textStyle: {
       default: fonts.default,

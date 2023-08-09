@@ -134,7 +134,10 @@ function App() {
         />
       </div>
       <div>
-        <Calendar />
+        <Calendar pickType="single" emitValue={(value) => console.log(value)} />
+      </div>
+      <div>
+        <Calendar pickType="range" emitValue={(value) => console.log(value)} />
       </div>
     </div>
   )
