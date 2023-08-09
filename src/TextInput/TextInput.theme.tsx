@@ -1,5 +1,5 @@
 import { merge } from 'lodash-es'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import { PartialDeep } from 'type-fest'
 import { KuiContext } from '../KuiProvider/context'
@@ -44,7 +44,6 @@ export const getTextInputTheme = (
   customTheme?: PartialDeep<TextInputThemeType>
 ) => {
   const theme = merge(currentTheme, customTheme)
-  customTheme && console.log('mergeTest', currentTheme, customTheme, theme)
   return theme
 }
 export const TextInputProvider = ({
@@ -63,8 +62,5 @@ export const TextInputProvider = ({
       ),
     []
   )
-  useEffect(() => {
-    console.log('defaultTextInputTheme', defaultTextInputTheme)
-  }, [defaultTextInputTheme])
   return <ThemeProvider theme={defaultTextInputTheme}>{children}</ThemeProvider>
 }
