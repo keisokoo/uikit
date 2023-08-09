@@ -27,7 +27,10 @@ export declare const defaultThemes: {
     };
     readonly fonts: {
         default: string;
+        large: string;
+        largeBold: string;
         small: string;
+        smallBold: string;
     };
 };
 export type DefaultThemes = typeof defaultThemes;

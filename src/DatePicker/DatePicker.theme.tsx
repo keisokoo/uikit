@@ -1,4 +1,3 @@
-
 import { KuiContext } from '../KuiProvider/context'
 import { DefaultThemes } from '../themes'
 import { merge } from 'lodash-es'
@@ -47,4 +46,3 @@ export const DatePickerProvider = ({
     </ThemeProvider>
   )
 }
-  
