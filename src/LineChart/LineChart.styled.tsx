@@ -11,7 +11,7 @@ const SvgChartWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 0px;
   background: #fff;
   & > svg {
     &:first-of-type {
@@ -41,7 +41,7 @@ const LineChartStyle = {
           touch-action: none;
         }
       }
-      max-width: 1084px;
+      max-width: 100%;
       margin: 0 auto;
       &.responsive:not(.scrollable) {
         width: 100%;
@@ -133,7 +133,7 @@ const LineChartStyle = {
     justify-content: flex-end;
     gap: 20px;
     margin: 12px auto 0;
-    max-width: 1084px;
+    max-width: 100%;
     // for : 월간 그래프 시에 우측 사이드 블러처리
     &.paddingRight {
       padding-right: 20px;

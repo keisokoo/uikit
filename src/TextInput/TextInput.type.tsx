@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, InputHTMLAttributes } from 'react'
+import React, { DetailedHTMLProps, InputHTMLAttributes } from 'react'
 import { CSSProp } from 'styled-components'
 import { PartialDeep } from 'type-fest'
 import { TextInputThemeType } from './TextInput.theme'

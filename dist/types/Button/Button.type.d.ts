@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import React from 'react';
 import { CSSProp } from 'styled-components';
 import { PartialDeep } from 'type-fest';
 import { ButtonThemeType } from './Button.theme';
@@ -8,4 +8,5 @@ export interface ButtonProps extends React.DetailedHTMLProps<React.ButtonHTMLAtt
     customTheme?: PartialDeep<ButtonThemeType>;
     loading?: boolean;
     $width?: number | string;
+    children?: React.ReactNode;
 }

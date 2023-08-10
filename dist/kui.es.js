@@ -583,7 +583,7 @@ var ButtonStyle = {
       _ref$$buttonStyle = _ref.$buttonStyle,
       $buttonStyle = _ref$$buttonStyle === void 0 ? 'fill' : _ref$$buttonStyle,
       $width = _ref.$width;
-    return css(_templateObject2$7 || (_templateObject2$7 = _taggedTemplateLiteral(["\n      cursor: pointer;\n      user-select: none;\n      padding: 8px 24px;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      ", "\n      transition: 0.15s;\n      background-color: ", ";\n      &:focus {\n        outline: none;\n        background-color: ", ";\n      }\n      &:hover {\n        background-color: ", ";\n      }\n      &:active {\n        background-color: ", ";\n      }\n      color: ", ";\n      &:disabled {\n        cursor: default;\n        color: ", ";\n        background-color: ", " !important;\n      }\n      ", "\n      ", "\n      ", "\n      ", "\n      ", "\n    "])), $width ? css(_templateObject3$6 || (_templateObject3$6 = _taggedTemplateLiteral(["\n            width: ", ";\n            padding: 8px;\n          "])), typeof $width === 'number' ? $width + 'px' : $width) : '', color[$buttonStyle].backgroundColor, color[$buttonStyle].backgroundFocusColor, color[$buttonStyle].backgroundHoverColor, color[$buttonStyle].backgroundActiveColor, color[$buttonStyle].textColor, color[$buttonStyle].textDisabledColor, color[$buttonStyle].backgroundColor, textStyle.default, $radius ? "border-radius: ".concat(typeof $radius === 'number' ? "".concat($radius, "px") : $radius, ";") : "border-radius: 4px;", $pending ? css(_templateObject4$5 || (_templateObject4$5 = _taggedTemplateLiteral(["\n            svg {\n              animation: ", " 1s linear infinite;\n            }\n          "])), rotate) : '', $buttonStyle === 'border' ? css(_templateObject5$4 || (_templateObject5$4 = _taggedTemplateLiteral(["\n            box-shadow: inset 0px 0px 0px 1px ", ";\n          "])), color[$buttonStyle].borderColor) : '', $css !== null && $css !== void 0 ? $css : '');
+    return css(_templateObject2$7 || (_templateObject2$7 = _taggedTemplateLiteral(["\n      cursor: pointer;\n      user-select: none;\n      padding: 8px 24px;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      ", "\n      transition: 0.15s;\n      background-color: ", ";\n      &:focus {\n        outline: none;\n        background-color: ", ";\n      }\n      &:hover {\n        background-color: ", ";\n      }\n      &:active {\n        background-color: ", ";\n      }\n      color: ", ";\n      &:disabled {\n        cursor: default;\n        color: ", ";\n        background-color: ", " !important;\n      }\n      ", "\n      ", "\n      ", "\n      ", "\n      ", "\n    "])), $width ? css(_templateObject3$6 || (_templateObject3$6 = _taggedTemplateLiteral(["\n            width: ", ";\n            padding: 8px;\n          "])), typeof $width === 'number' ? $width + 'px' : $width) : '', color[$buttonStyle].backgroundColor, color[$buttonStyle].backgroundFocusColor, color[$buttonStyle].backgroundHoverColor, color[$buttonStyle].backgroundActiveColor, color[$buttonStyle].textColor, color[$buttonStyle].textDisabledColor, color[$buttonStyle].backgroundColor, textStyle.default, $radius ? "border-radius: ".concat(typeof $radius === 'number' ? "".concat($radius, "px") : $radius, ";") : "border-radius: 4px;", $pending ? css(_templateObject4$5 || (_templateObject4$5 = _taggedTemplateLiteral(["\n            .loading {\n              width: 24px;\n              height: 24px;\n              display: flex;\n              align-items: center;\n              justify-content: center;\n              animation: ", " 1s linear infinite;\n            }\n          "])), rotate) : '', $buttonStyle === 'border' ? css(_templateObject5$4 || (_templateObject5$4 = _taggedTemplateLiteral(["\n            box-shadow: inset 0px 0px 0px 1px ", ";\n          "])), color[$buttonStyle].borderColor) : '', $css !== null && $css !== void 0 ? $css : '');
   })
 };
 
@@ -3129,7 +3129,9 @@ var ButtonProvider = function ButtonProvider(_ref) {
 };
 
 var SvgLoading = function SvgLoading(props) {
-  return /*#__PURE__*/React.createElement("svg", _extends({
+  return /*#__PURE__*/React.createElement("div", {
+    className: "loading"
+  }, /*#__PURE__*/React.createElement("svg", _extends({
     xmlns: "http://www.w3.org/2000/svg",
     width: 20,
     height: 20,
@@ -3142,7 +3144,7 @@ var SvgLoading = function SvgLoading(props) {
     strokeWidth: 3,
     d: "M10 2a8 8 0 1 0 8 8",
     className: "Loading_svg__stroke-path"
-  }));
+  })));
 };
 
 var Wrap$4 = ButtonStyle.Wrap;
@@ -3156,8 +3158,10 @@ var DefaultButton = function DefaultButton(_a) {
     "$pending": !!loading
   }, props), loading ? /*#__PURE__*/React__default.createElement(SvgLoading, null) : props.children));
 };
-var Button = function Button(props) {
-  return /*#__PURE__*/React__default.createElement(DefaultButton, _extends({}, props));
+var Button = function Button(_a) {
+  var children = _a.children,
+    props = __rest(_a, ["children"]);
+  return /*#__PURE__*/React__default.createElement(DefaultButton, _extends({}, props), children);
 };
 
 function getDefaultExportFromCjs (x) {
@@ -4772,13 +4776,13 @@ var Dropdown = function Dropdown(props) {
 };
 
 var _templateObject$1, _templateObject2$1, _templateObject3$1, _templateObject4$1, _templateObject5$1, _templateObject6$1, _templateObject7$1;
-var SvgChartWrap$1 = styled.div(_templateObject$1 || (_templateObject$1 = _taggedTemplateLiteral(["\n  padding: 0;\n  position: relative;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  gap: 8px;\n  background: #fff;\n  & > svg {\n    &:first-of-type {\n      position: sticky;\n      left: 0px;\n    }\n  }\n"])));
+var SvgChartWrap$1 = styled.div(_templateObject$1 || (_templateObject$1 = _taggedTemplateLiteral(["\n  padding: 0;\n  position: relative;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  gap: 0px;\n  background: #fff;\n  & > svg {\n    &:first-of-type {\n      position: sticky;\n      left: 0px;\n    }\n  }\n"])));
 var LineChartStyle = {
   SvgChartWrap: SvgChartWrap$1,
   LineChartWrap: styled.div(function (_ref) {
     _ref.theme.color;
       var $css = _ref.$css;
-    return css(_templateObject2$1 || (_templateObject2$1 = _taggedTemplateLiteral(["\n      display: flex;\n      justify-content: center;\n      padding: 0;\n      position: relative;\n      & > div {\n        width: 100%;\n        display: flex;\n      }\n      &.noData > div {\n        width: fit-content;\n      }\n      &.scrollable {\n        overflow-x: auto;\n        &.noData {\n          touch-action: none;\n        }\n      }\n      max-width: 1084px;\n      margin: 0 auto;\n      &.responsive:not(.scrollable) {\n        width: 100%;\n        margin: 0 auto;\n        ", " {\n          width: 100%;\n        }\n        svg {\n          position: relative;\n          height: auto;\n        }\n        & > div {\n          margin: 0 auto;\n          width: 100%;\n          display: flex;\n          align-items: center;\n          justify-content: center;\n        }\n      }\n      ", "\n    "])), SvgChartWrap$1, $css !== null && $css !== void 0 ? $css : '');
+    return css(_templateObject2$1 || (_templateObject2$1 = _taggedTemplateLiteral(["\n      display: flex;\n      justify-content: center;\n      padding: 0;\n      position: relative;\n      & > div {\n        width: 100%;\n        display: flex;\n      }\n      &.noData > div {\n        width: fit-content;\n      }\n      &.scrollable {\n        overflow-x: auto;\n        &.noData {\n          touch-action: none;\n        }\n      }\n      max-width: 100%;\n      margin: 0 auto;\n      &.responsive:not(.scrollable) {\n        width: 100%;\n        margin: 0 auto;\n        ", " {\n          width: 100%;\n        }\n        svg {\n          position: relative;\n          height: auto;\n        }\n        & > div {\n          margin: 0 auto;\n          width: 100%;\n          display: flex;\n          align-items: center;\n          justify-content: center;\n        }\n      }\n      ", "\n    "])), SvgChartWrap$1, $css !== null && $css !== void 0 ? $css : '');
   }),
   Nodata: styled.div(function (_ref2) {
     var _ref2$theme = _ref2.theme,
@@ -4804,7 +4808,7 @@ var LineChartStyle = {
       _ref5.$css;
     return css(_templateObject6$1 || (_templateObject6$1 = _taggedTemplateLiteral(["\n      display: flex;\n      align-items: center;\n      gap: 8px;\n      ", "\n      font-size: 12px;\n      color: ", ";\n      .line {\n        width: 20px;\n        height: 2px;\n      }\n    "])), textStyle.small, color.textDataColor);
   }),
-  BottomInfoWrap: styled.div(_templateObject7$1 || (_templateObject7$1 = _taggedTemplateLiteral(["\n    display: flex;\n    align-items: center;\n    justify-content: flex-end;\n    gap: 20px;\n    margin: 12px auto 0;\n    max-width: 1084px;\n    // for : \uC6D4\uAC04 \uADF8\uB798\uD504 \uC2DC\uC5D0 \uC6B0\uCE21 \uC0AC\uC774\uB4DC \uBE14\uB7EC\uCC98\uB9AC\n    &.paddingRight {\n      padding-right: 20px;\n    }\n  "])))
+  BottomInfoWrap: styled.div(_templateObject7$1 || (_templateObject7$1 = _taggedTemplateLiteral(["\n    display: flex;\n    align-items: center;\n    justify-content: flex-end;\n    gap: 20px;\n    margin: 12px auto 0;\n    max-width: 100%;\n    // for : \uC6D4\uAC04 \uADF8\uB798\uD504 \uC2DC\uC5D0 \uC6B0\uCE21 \uC0AC\uC774\uB4DC \uBE14\uB7EC\uCC98\uB9AC\n    &.paddingRight {\n      padding-right: 20px;\n    }\n  "])))
 };
 
 function getLineChartStyle(theme) {
@@ -5526,7 +5530,6 @@ function getTextInputStyle(theme) {
 }
 var getTextInputTheme = function getTextInputTheme(currentTheme, customTheme) {
   var theme = merge$1(currentTheme, customTheme);
-  customTheme && console.log('mergeTest', currentTheme, customTheme, theme);
   return theme;
 };
 var TextInputProvider = function TextInputProvider(_ref) {
@@ -5536,9 +5539,6 @@ var TextInputProvider = function TextInputProvider(_ref) {
   var defaultTextInputTheme = React__default.useMemo(function () {
     return getTextInputTheme(getTextInputStyle(globalTheme.theme), customTheme !== null && customTheme !== void 0 ? customTheme : {});
   }, []);
-  useEffect(function () {
-    console.log('defaultTextInputTheme', defaultTextInputTheme);
-  }, [defaultTextInputTheme]);
   return /*#__PURE__*/React__default.createElement(ThemeProvider, {
     theme: defaultTextInputTheme
   }, children);

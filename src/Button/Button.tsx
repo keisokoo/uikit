@@ -17,8 +17,8 @@ const DefaultButton = ({ customTheme, loading, ...props }: ButtonProps) => {
   )
 }
 
-const Button = (props: ButtonProps) => {
-  return <DefaultButton {...props} />
+const Button = ({ children, ...props }: ButtonProps) => {
+  return <DefaultButton {...props}>{children}</DefaultButton>
 }
 
 export default Button

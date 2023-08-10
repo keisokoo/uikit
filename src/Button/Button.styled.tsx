@@ -67,7 +67,12 @@ const ButtonStyle = {
         : `border-radius: 4px;`}
       ${$pending
         ? css`
-            svg {
+            .loading {
+              width: 24px;
+              height: 24px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
               animation: ${rotate} 1s linear infinite;
             }
           `

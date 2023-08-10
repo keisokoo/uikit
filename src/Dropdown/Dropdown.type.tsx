@@ -2,7 +2,6 @@ import { DetailedHTMLProps, HTMLAttributes } from 'react'
 import { CSSProp } from 'styled-components'
 import { PartialDeep } from 'type-fest'
 import { DropdownThemeType } from './Dropdown.theme'
-
 export type DropdownListType<T extends string | number> = {
   [key in T]: string | number
 }
