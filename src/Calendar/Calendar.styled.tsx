@@ -98,6 +98,7 @@ const CalendarStyle = {
           width: 50%;
           left: 50%;
           height: 100%;
+          z-index: -1;
           background-color: ${color.selectedBackgroundColor};
         }
       }
@@ -138,6 +139,7 @@ const CalendarStyle = {
           width: 50%;
           right: 50%;
           height: 100%;
+          z-index: -1;
           background-color: ${color.selectedBackgroundColor};
         }
       }
