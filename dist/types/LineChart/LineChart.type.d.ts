@@ -1,5 +1,5 @@
 import React from 'react';
-import { CSSProp } from 'styled-components';
+import { CSSProp, RuleSet } from 'styled-components';
 import { PartialDeep } from 'type-fest';
 import { LineChartThemeType } from './LineChart.theme';
 import { ChartDataType, ChartStringValue, DefaultStepType, ExtraChartData } from './LineGraph';
@@ -62,7 +62,7 @@ export declare const CHART_TYPES: {
 };
 export declare const disposeChartType: (value: ChartDataType[], type: keyof typeof CHART_TYPES) => DefaultStepType;
 export interface LineChartProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-    $css?: CSSProp | string;
+    $css?: CSSProp | string | RuleSet<object>;
     customTheme?: PartialDeep<LineChartThemeType>;
     calibration?: number;
     positionUp?: number;

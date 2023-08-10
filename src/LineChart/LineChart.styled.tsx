@@ -1,8 +1,8 @@
-import styled, { CSSProp, css } from 'styled-components'
+import styled, { CSSProp, RuleSet, css } from 'styled-components'
 import { LineChartThemeType } from './LineChart.theme'
 
 interface LineChartProps {
-  $css?: CSSProp | string
+  $css?: CSSProp | string | RuleSet<object>
   theme: LineChartThemeType
 }
 const SvgChartWrap = styled.div`

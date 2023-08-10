@@ -1,8 +1,8 @@
 /// <reference types="react" />
-import { CSSProp } from 'styled-components';
+import { CSSProp, RuleSet } from 'styled-components';
 import { CalendarThemeType } from './Calendar.theme';
 interface CalendarProps {
-    $css?: CSSProp | string;
+    $css?: CSSProp | string | RuleSet<object>;
     theme: CalendarThemeType;
 }
 declare const CalendarStyle: {

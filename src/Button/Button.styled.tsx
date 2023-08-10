@@ -1,8 +1,8 @@
-import styled, { CSSProp, css, keyframes } from 'styled-components'
+import styled, { CSSProp, RuleSet, css, keyframes } from 'styled-components'
 import { ButtonThemeType } from './Button.theme'
 
 interface ButtonProps {
-  $css?: CSSProp | string
+  $css?: CSSProp | string | RuleSet<object>
   theme: ButtonThemeType
 }
 type ButtonStyleProps = {

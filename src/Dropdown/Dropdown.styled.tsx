@@ -1,8 +1,8 @@
-import styled, { CSSProp, css } from 'styled-components'
+import styled, { CSSProp, RuleSet, css } from 'styled-components'
 import { DropdownThemeType } from './Dropdown.theme'
 
 interface DropdownProps {
-  $css?: CSSProp | string
+  $css?: CSSProp | string | RuleSet<object>
   $width?: number | string
   theme: DropdownThemeType
 }

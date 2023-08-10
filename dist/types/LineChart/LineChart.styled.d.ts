@@ -1,9 +1,9 @@
 /// <reference types="react" />
 /// <reference types="react" />
-import { CSSProp } from 'styled-components';
+import { CSSProp, RuleSet } from 'styled-components';
 import { LineChartThemeType } from './LineChart.theme';
 interface LineChartProps {
-    $css?: CSSProp | string;
+    $css?: CSSProp | string | RuleSet<object>;
     theme: LineChartThemeType;
 }
 declare const LineChartStyle: {

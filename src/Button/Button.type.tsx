@@ -1,5 +1,5 @@
 import React from 'react'
-import { CSSProp } from 'styled-components'
+import { CSSProp, RuleSet } from 'styled-components'
 import { PartialDeep } from 'type-fest'
 import { ButtonThemeType } from './Button.theme'
 
@@ -8,7 +8,7 @@ export interface ButtonProps
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > {
-  $css?: CSSProp | string
+  $css?: CSSProp | string | RuleSet<object>
   $buttonStyle?: 'fill' | 'border'
   customTheme?: PartialDeep<ButtonThemeType>
   loading?: boolean

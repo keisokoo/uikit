@@ -1,8 +1,8 @@
 /// <reference types="react" />
-import { CSSProp } from 'styled-components';
+import { CSSProp, RuleSet } from 'styled-components';
 import { DatePickerThemeType } from './DatePicker.theme';
 interface DatePickerProps {
-    $css?: CSSProp | string;
+    $css?: CSSProp | string | RuleSet<object>;
     theme: DatePickerThemeType;
 }
 declare const DatePickerStyle: {

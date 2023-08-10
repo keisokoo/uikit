@@ -25,6 +25,7 @@ const globals = {
   'styled-components': 'StyledComponents',
   'react-syntax-highlighter': 'ReactSyntaxHighlighter',
   'react-syntax-highlighter/dist/esm/styles/prism': 'PrismStyles',
+  'dayjs/plugin/weekOfYear': 'weekOfYear',
 }
 
 const defaultConfig = {

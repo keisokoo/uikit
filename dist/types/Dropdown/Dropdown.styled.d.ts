@@ -1,8 +1,8 @@
 /// <reference types="react" />
-import { CSSProp } from 'styled-components';
+import { CSSProp, RuleSet } from 'styled-components';
 import { DropdownThemeType } from './Dropdown.theme';
 interface DropdownProps {
-    $css?: CSSProp | string;
+    $css?: CSSProp | string | RuleSet<object>;
     $width?: number | string;
     theme: DropdownThemeType;
 }

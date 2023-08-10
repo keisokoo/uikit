@@ -1,9 +1,9 @@
 /// <reference types="react" />
 /// <reference types="react" />
-import { CSSProp } from 'styled-components';
+import { CSSProp, RuleSet } from 'styled-components';
 export declare const CodeBlockStyle: {
     Wrap: import("styled-components").IStyledComponent<"web", import("styled-components/dist/types").Substitute<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLDivElement>, HTMLDivElement>, {
-        $css?: CSSProp | string;
+        $css?: CSSProp | string | RuleSet<object>;
     }>>;
     Title: import("styled-components").IStyledComponent<"web", {
         ref?: import("react").LegacyRef<HTMLDivElement> | undefined;

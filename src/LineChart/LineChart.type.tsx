@@ -1,5 +1,5 @@
 import React from 'react'
-import { CSSProp } from 'styled-components'
+import { CSSProp, RuleSet } from 'styled-components'
 import { PartialDeep } from 'type-fest'
 import { LineChartThemeType } from './LineChart.theme'
 import LineGraph, {
@@ -91,7 +91,7 @@ export interface LineChartProps
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
   > {
-  $css?: CSSProp | string
+  $css?: CSSProp | string | RuleSet<object>
   customTheme?: PartialDeep<LineChartThemeType>
   calibration?: number
   positionUp?: number

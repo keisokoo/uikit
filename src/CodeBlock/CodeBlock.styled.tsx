@@ -1,7 +1,7 @@
-import styled, { CSSProp, css } from 'styled-components'
+import styled, { CSSProp, RuleSet, css } from 'styled-components'
 
 export const CodeBlockStyle = {
-  Wrap: styled.div<{ $css?: CSSProp | string }>`
+  Wrap: styled.div<{ $css?: CSSProp | string | RuleSet<object> }>`
     ${({ $css }) => css`
       background: rgb(39, 40, 34);
       overflow: hidden;

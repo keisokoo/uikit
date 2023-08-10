@@ -47,23 +47,23 @@ function componentString(answer: string) {
 function typesString(answer: string) {
   const pascalName = pascal(answer)
   return `import { DetailedHTMLProps, HTMLAttributes } from 'react'
-  import { CSSProp } from 'styled-components'
+  import { CSSProp, RuleSet } from 'styled-components'
   import { PartialDeep } from 'type-fest'
   import { ${pascalName}ThemeType } from './${pascalName}.theme'
 
   export interface ${pascalName}Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-    $css?: CSSProp | string
+    $css?: CSSProp | string | RuleSet<object>
     customTheme?: PartialDeep<${pascalName}ThemeType>
   }
   `
 }
 function stylesString(answer: string) {
   const pascalName = pascal(answer)
-  return `import styled, { CSSProp, css } from 'styled-components'
+  return `import styled, { CSSProp, css, RuleSet } from 'styled-components'
   import { ${pascalName}ThemeType } from './${pascalName}.theme'
   
   interface ${pascalName}Props {
-    $css?: CSSProp | string
+    $css?: CSSProp | string | RuleSet<object>
     theme: ${pascalName}ThemeType
   }
   const ${pascalName}Style = {

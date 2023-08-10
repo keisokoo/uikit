@@ -1,7 +1,7 @@
 import { DetailedHTMLProps, HTMLAttributes } from 'react';
-import { CSSProp } from 'styled-components';
+import { CSSProp, RuleSet } from 'styled-components';
 export interface CodeBlockProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-    $css?: CSSProp | string;
+    $css?: CSSProp | string | RuleSet<object>;
     children?: string;
     title?: string;
 }

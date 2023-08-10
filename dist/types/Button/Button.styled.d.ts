@@ -1,8 +1,8 @@
 /// <reference types="react" />
-import { CSSProp } from 'styled-components';
+import { CSSProp, RuleSet } from 'styled-components';
 import { ButtonThemeType } from './Button.theme';
 interface ButtonProps {
-    $css?: CSSProp | string;
+    $css?: CSSProp | string | RuleSet<object>;
     theme: ButtonThemeType;
 }
 type ButtonStyleProps = {

@@ -1,8 +1,8 @@
-import styled, { CSSProp, css } from 'styled-components'
+import styled, { CSSProp, RuleSet, css } from 'styled-components'
 import { DatePickerThemeType } from './DatePicker.theme'
 
 interface DatePickerProps {
-  $css?: CSSProp | string
+  $css?: CSSProp | string | RuleSet<object>
   theme: DatePickerThemeType
 }
 const DatePickerStyle = {
