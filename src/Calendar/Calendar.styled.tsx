@@ -16,7 +16,8 @@ const CalendarStyle = {
       & > div {
         flex: 1;
       }
-      width: ${style.calendarWidth};
+      max-width: ${style.calendarWidth};
+      width: 100%;
       height: ${style.calendarHeight};
       color: ${color.textColor};
       ${$css ?? ''};

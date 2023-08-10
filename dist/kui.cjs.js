@@ -3264,7 +3264,7 @@ var CalendarStyle = {
       color = _ref$theme.color,
       style = _ref$theme.style,
       $css = _ref.$css;
-    return styled.css(_templateObject$6 || (_templateObject$6 = _taggedTemplateLiteral(["\n      display: flex;\n      flex-direction: column;\n      gap: ", ";\n      & > div {\n        flex: 1;\n      }\n      width: ", ";\n      height: ", ";\n      color: ", ";\n      ", ";\n    "])), style.calendarRowGap, style.calendarWidth, style.calendarHeight, color.textColor, $css !== null && $css !== void 0 ? $css : '');
+    return styled.css(_templateObject$6 || (_templateObject$6 = _taggedTemplateLiteral(["\n      display: flex;\n      flex-direction: column;\n      gap: ", ";\n      & > div {\n        flex: 1;\n      }\n      max-width: ", ";\n      width: 100%;\n      height: ", ";\n      color: ", ";\n      ", ";\n    "])), style.calendarRowGap, style.calendarWidth, style.calendarHeight, color.textColor, $css !== null && $css !== void 0 ? $css : '');
   }),
   WeeksRow: styled__default.default.div(function (_ref2) {
     var _ref2$theme = _ref2.theme,
@@ -5674,7 +5674,9 @@ TextInput.Underline = UnderlineInput;
 TextInput.Box = BoxInput;
 
 exports.Button = Button;
+exports.ButtonProvider = ButtonProvider;
 exports.Calendar = Calendar;
+exports.CalendarProvider = CalendarProvider;
 exports.ClickDrag = ClickDrag;
 exports.CodeBlock = CodeBlock;
 exports.ControlPosition = ControlPosition;
@@ -5683,10 +5685,13 @@ exports.Drag = Drag;
 exports.DragOrPinchZoom = DragOrPinchZoom;
 exports.DragWithZoom = DragZoom;
 exports.Dropdown = Dropdown;
+exports.DropdownProvider = DropdownProvider;
 exports.KuiContext = KuiContext;
 exports.KuiProvider = KuiProvider;
 exports.LineChart = LineChart;
+exports.LineChartProvider = LineChartProvider;
 exports.TextInput = TextInput;
+exports.TextInputProvider = TextInputProvider;
 exports.TouchDragZoom = TouchDragZoom;
 exports.defaultThemes = defaultThemes;
 exports.generateCalendar = generateCalendar;

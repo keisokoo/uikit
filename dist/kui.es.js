@@ -3238,7 +3238,7 @@ var CalendarStyle = {
       color = _ref$theme.color,
       style = _ref$theme.style,
       $css = _ref.$css;
-    return css(_templateObject$6 || (_templateObject$6 = _taggedTemplateLiteral(["\n      display: flex;\n      flex-direction: column;\n      gap: ", ";\n      & > div {\n        flex: 1;\n      }\n      width: ", ";\n      height: ", ";\n      color: ", ";\n      ", ";\n    "])), style.calendarRowGap, style.calendarWidth, style.calendarHeight, color.textColor, $css !== null && $css !== void 0 ? $css : '');
+    return css(_templateObject$6 || (_templateObject$6 = _taggedTemplateLiteral(["\n      display: flex;\n      flex-direction: column;\n      gap: ", ";\n      & > div {\n        flex: 1;\n      }\n      max-width: ", ";\n      width: 100%;\n      height: ", ";\n      color: ", ";\n      ", ";\n    "])), style.calendarRowGap, style.calendarWidth, style.calendarHeight, color.textColor, $css !== null && $css !== void 0 ? $css : '');
   }),
   WeeksRow: styled.div(function (_ref2) {
     var _ref2$theme = _ref2.theme,
@@ -5647,4 +5647,4 @@ var TextInput = function TextInput(props) {
 TextInput.Underline = UnderlineInput;
 TextInput.Box = BoxInput;
 
-export { Button, Calendar, ClickDrag, CodeBlock, ControlPosition, Div, Drag, DragOrPinchZoom, DragZoom as DragWithZoom, Dropdown, KuiContext, KuiProvider, LineChart, TextInput, TouchDragZoom, defaultThemes, generateCalendar, useOutsideClick };
+export { Button, ButtonProvider, Calendar, CalendarProvider, ClickDrag, CodeBlock, ControlPosition, Div, Drag, DragOrPinchZoom, DragZoom as DragWithZoom, Dropdown, DropdownProvider, KuiContext, KuiProvider, LineChart, LineChartProvider, TextInput, TextInputProvider, TouchDragZoom, defaultThemes, generateCalendar, useOutsideClick };
