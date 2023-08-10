@@ -163,7 +163,6 @@ const CalendarStyle = {
         border-radius: ${height}px;
         span {
           user-select: none;
-          transform: translateY(2px);
           display: inline-flex;
           align-items: center;
           justify-content: center;
